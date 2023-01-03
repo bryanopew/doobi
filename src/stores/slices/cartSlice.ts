@@ -79,12 +79,12 @@ export const cartSlice = createSlice({
       });
     },
     pickProductCheckBox: (state, action) => {
-      console.log(action.payload);
       let { id, picked } = action.payload;
       picked === false
         ? state.pickedCart.push(id)
         : state.pickedCart.filter((el) => {
-            return el == id;
+            console.log("동작은함");
+            return id !== el;
           });
     },
   },

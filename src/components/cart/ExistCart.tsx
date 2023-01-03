@@ -129,7 +129,9 @@ const CheckAll = (props) => {
 
 const ExistCart = (props) => {
   const dispatch = useDispatch();
-  const { cart, menuIndex } = useSelector((state: RootState) => state.cart);
+  const { cart, menuIndex, pickedCart } = useSelector(
+    (state: RootState) => state.cart
+  );
   const [data, setData] = useState();
   const calculatelPrice = () => {
     let price = 0;
@@ -138,7 +140,13 @@ const ExistCart = (props) => {
     });
     return price;
   };
-
+  console.log("existCart/pickedCart:", pickedCart);
+  console.log(
+    "filtered:",
+    pickedCart.filter((el) => {
+      return "PD20220713000000045" !== el;
+    })
+  );
   const totalPrice = calculatelPrice();
   useEffect(() => {
     sendTotalPrice(totalPrice);
