@@ -148,7 +148,7 @@ const AddressEdit = ({
                     )
                   );
                   navigate("MyPageStacks", {
-                    screen: "Orders",
+                    screen: "Order",
                     params: { from: "AddressEdit" },
                   });
                 }}
@@ -197,7 +197,7 @@ const AddressEdit = ({
               console.log("onPress: address.length: ", address.length);
               dispatch(setSelectedAddressId(address.length));
               navigate("MyPageStacks", {
-                screen: "Orders",
+                screen: "Order",
                 params: { from: "AddressEdit" },
               });
             } else {
@@ -216,7 +216,7 @@ const AddressEdit = ({
               })
             );
             navigate("MyPageStacks", {
-              screen: "Orders",
+              screen: "Order",
               params: { from: "AddressEdit" },
             });
           }

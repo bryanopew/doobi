@@ -53,7 +53,7 @@ const UpDownArrow = styled.Image`
   margin-left: 8px;
 `;
 
-const Orders = ({ navigation: { navigate }, route }: NavigationProps) => {
+const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
   // redux
   const { cart } = useSelector((state: RootState) => state.cart);
   const { orderInfo, selectedAddressId } = useSelector(
@@ -222,4 +222,4 @@ const Orders = ({ navigation: { navigate }, route }: NavigationProps) => {
   );
 };
 
-export default Orders;
+export default Order;

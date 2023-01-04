@@ -13,7 +13,6 @@ const RootStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Stacks" component={Stacks} />
       <Stack.Screen name="MyPageStacks" component={MyPageStacks} />
-
       <Stack.Screen name="BottomTab" component={BottomTab} />
     </Stack.Navigator>
   );

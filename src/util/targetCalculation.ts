@@ -1,10 +1,9 @@
 import {
+  IProduct,
   purposeCdToValue,
   ratioCdToValue,
   timeCdToMinutes,
 } from "~/constants/constants";
-
-import { IProduct } from "~/stores/slices/cartSlice";
 import { IUserTarget } from "~/stores/slices/userInfoSlice";
 
 /** gender, age, height, weight  => BMR */

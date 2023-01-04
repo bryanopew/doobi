@@ -51,5 +51,9 @@
 	<false/>
   <key>UIStatusBarStyle</key>
   <string>UIStatusBarStyleDefault</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+  <string>$(PRODUCT_NAME) 사진첩</string>
+  <key>NSCameraUsageDescription</key>
+  <string>$(PRODUCT_NAME) 카메라</string>
 </dict>
 </plist>

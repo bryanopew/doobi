@@ -56,11 +56,18 @@ const CancelBtnText = styled(TextMain)`
 
 interface IDAlert {
   alertShow: boolean;
-  renderContent: Function;
+  renderContent: () => React.ReactElement;
   onConfirm: Function;
   onCancel: Function;
+  confirmLabel?: string;
 }
-const DAlert = ({ alertShow, renderContent, onConfirm, onCancel }: IDAlert) => {
+const DAlert = ({
+  alertShow,
+  renderContent,
+  onConfirm,
+  onCancel,
+  confirmLabel,
+}: IDAlert) => {
   return alertShow != null ? (
     <Modal
       animationType="slide"
@@ -88,7 +95,9 @@ const DAlert = ({ alertShow, renderContent, onConfirm, onCancel }: IDAlert) => {
                 onConfirm ? onConfirm() : null;
               }}
             >
-              <ConfirmBtnText>확인</ConfirmBtnText>
+              <ConfirmBtnText>
+                {confirmLabel ? confirmLabel : "확인"}
+              </ConfirmBtnText>
             </BtnRight>
           </Row>
         </PopUpContainer>

@@ -19,7 +19,6 @@ const BackArrow = styled.Image`
   height: 24px;
 `;
 
-
 const Stack = createNativeStackNavigator();
 const Stacks = () => {
   return (
@@ -63,7 +62,7 @@ const Stacks = () => {
           ),
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="AddressEdit"
         component={AddressEdit}
         options={{
@@ -73,7 +72,7 @@ const Stacks = () => {
             <TouchableOpacity
               onPress={() =>
                 navigate("MyPageStacks", {
-                  screen: "Orders",
+                  screen: "Order",
                   params: { from: "AddressEdit" },
                 })
               }

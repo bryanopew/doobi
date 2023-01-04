@@ -96,8 +96,7 @@ export const Seperator = styled.View`
  */
 export const BtnCTA = styled.TouchableOpacity`
   height: ${({ height }: StyledProps) => (height ? `${height}px` : "52px")};
-  /* width: ${({ width }: StyledProps) => width ?? `${SCREENWIDTH - 32}px`}; */
-  width: 100%;
+  width: ${({ width }: StyledProps) => (width ? `${width}px` : `100%`)};
   border-radius: 4px;
   background-color: ${({ btnStyle }: StyledProps) =>
     btnStyle == "activated"
@@ -110,6 +109,7 @@ export const BtnCTA = styled.TouchableOpacity`
       ? `${colors.kakaoColor}`
       : `${colors.white}`};
   align-items: center;
+  align-self: center;
   justify-content: center;
   border-width: ${({ btnStyle }: StyledProps) =>
     btnStyle == "border" || btnStyle == "borderActivated" ? "1px" : "0px"};
@@ -154,13 +154,13 @@ export const BtnSmallText = styled.Text`
 `;
 
 export const VerticalLine = styled.View`
-  height: 100%;
+  height: ${({ height }: StyledProps) => (height ? `${height}px` : `100%`)};
   width: 1px;
   background-color: ${colors.inActivated};
 `;
 export const HorizontalLine = styled.View`
   height: 1px;
-  width: 100%;
+  width: ${({ width }: StyledProps) => (width ? `${width}px` : `100%`)};
   background-color: ${colors.inActivated};
 `;
 
