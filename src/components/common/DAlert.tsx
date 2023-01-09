@@ -63,7 +63,7 @@ interface IDAlert {
 const DAlert = ({ alertShow, renderContent, onConfirm, onCancel }: IDAlert) => {
   return alertShow != null ? (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={alertShow ? true : false}
       onRequestClose={() => {

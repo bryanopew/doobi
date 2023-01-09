@@ -23,9 +23,9 @@ import ResetButton from "~/components/home/homeFilter/ResetFilter";
 const Tab = createMaterialTopTabNavigator();
 
 const Reset = styled.Image`
-  width: 30px;
-  height: 30px;
-  margin-top: 12px;
+  width: 24px;
+  height: 24px;
+  margin-top: 16px;
 `;
 const FilterOn = styled.Image`
   margin-top: 20px;

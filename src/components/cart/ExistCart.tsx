@@ -113,7 +113,7 @@ const ExistCart = (props) => {
   const { cart, menuIndex, pickedCart } = useSelector(
     (state: RootState) => state.cart
   );
-  console.log(props);
+  console.log("existcart:", pickedCart);
   const [data, setData] = useState();
   const calculatelPrice = () => {
     let price = 0;
@@ -139,7 +139,7 @@ const ExistCart = (props) => {
               <View>
                 <EachCheckBoxAndroid
                   id={el.productNo}
-                  checkEvery={checkEvery}
+                  // checkEvery={checkEvery}
                 />
                 <Thumbnail
                   source={{

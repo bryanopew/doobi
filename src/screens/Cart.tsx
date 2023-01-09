@@ -145,7 +145,7 @@ const Cart = () => {
   }
   // console.log("cart/pickedCart:", pickedCart);
   // console.log("cart/cartArray:", cart);
-
+  const checkEvery = () => {};
   return (
     <>
       <ScrollView>
