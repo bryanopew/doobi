@@ -88,7 +88,6 @@ const CardMenuSelect = () => {
     arg.map((el, index) => {
       return `식단 ${index + 1}`;
     });
-  console.log(pickedCart);
   let cardMenuArray = menuInfo(cart).map((el) => {
     return el;
   });

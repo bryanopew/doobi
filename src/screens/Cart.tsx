@@ -59,7 +59,7 @@ const TotalPriceText = styled(TextMain)`
   font-size: 16px;
   font-weight: bold;
 `;
-const ProductName = styled(TextMain)`
+const SummaryText = styled(TextMain)`
   margin-top: 4px;
   font-size: 14px;
 `;
@@ -109,11 +109,30 @@ const Cart = () => {
     arg.map((el, index) => {
       return `식단 ${index + 1}`;
     });
-
   let cardMenuArray = menuInfo(cart).map((el) => {
     return el;
   });
+  const getPlatformNm = () =>
+    cart[0].map((el, index) => {
+      return el.platformNm;
+    });
+  const set = new Set(getPlatformNm());
+  const platformArray = [...set];
 
+  //결제정보 관련
+  const getProductInfo = (index: number) =>
+    cart[index]?.map((el) => {
+      return {
+        cartIndex: index,
+        productNo: el.productNo,
+        qty: el.qty,
+        price: el.price,
+      };
+    });
+  let productInfoArray = [];
+  for (let i = 0; i < 3; i++) {
+    productInfoArray.push(getProductInfo(i));
+  }
   return (
     <>
       <ScrollView>
@@ -144,13 +163,18 @@ const Cart = () => {
         <Row>
           <CardMenuSelect />
         </Row>
+        <SummaryText>
+          {/* {cardMenuArray.map((el, index) => {
+            return <SummaryText key={index}>+{el}</SummaryText>;
+          })} */}
+        </SummaryText>
       </ScrollView>
 
       <Helper>
         <BtnBottomCTA
           btnStyle={cart[menuIndex].length === 0 ? "inactivated" : "activated"}
-          disabled={cart[menuIndex].length === 0 ? false : true}
-          onPress={() => console.log("결제")}
+          disabled={cart[menuIndex].length === 0 ? true : false}
+          onPress={() => console.log(productInfoArray)}
         >
           <BtnText>총 {totalPrice}원 주문하기</BtnText>
         </BtnBottomCTA>
