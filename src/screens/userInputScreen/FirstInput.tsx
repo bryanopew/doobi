@@ -142,7 +142,7 @@ const renderWeightInput = (
   );
 };
 
-const UserInfo1 = ({ navigation: { navigate } }: NavigationProps) => {
+const FirstInput = ({ navigation: { navigate } }: NavigationProps) => {
   // state
   // redux
   const { userInfo } = useSelector((state: RootState) => state.userInfo);
@@ -295,7 +295,7 @@ const UserInfo1 = ({ navigation: { navigate } }: NavigationProps) => {
               bmr: BMR,
             })
           );
-          navigate("Stacks", { screen: "SecondInput", params: BMR });
+          navigate("InputNav", { screen: "SecondInput", params: BMR });
         }}
       >
         <BtnText>다음</BtnText>
@@ -304,4 +304,4 @@ const UserInfo1 = ({ navigation: { navigate } }: NavigationProps) => {
   );
 };
 
-export default UserInfo1;
+export default FirstInput;

@@ -189,7 +189,7 @@ const Address = ({
             </SelectContainer>
             <EditBtn
               onPress={() => {
-                navigation.navigate("Stacks", {
+                navigation.navigate("InputNav", {
                   screen: "AddressEdit",
                   params: {
                     currentAddressId: index,
@@ -225,7 +225,7 @@ const Address = ({
               receiverContact: receiverContactValue,
             })
           );
-          navigation.navigate("Stacks", {
+          navigation.navigate("InputNav", {
             screen: "AddressEdit",
             params: {},
           });

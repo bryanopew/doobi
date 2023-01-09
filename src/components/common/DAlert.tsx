@@ -70,7 +70,7 @@ const DAlert = ({
 }: IDAlert) => {
   return alertShow != null ? (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={alertShow ? true : false}
       onRequestClose={() => {

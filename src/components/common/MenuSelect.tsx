@@ -12,7 +12,14 @@ import {
 } from "~/stores/slices/cartSlice";
 import { Col, HorizontalLine, TextMain } from "~/styles/styledConsts";
 import { IProduct } from "~/constants/constants";
+import DAlert from "./DAlert";
+const Container = styled.View`
+  padding: 0px 16px 24px 16px;
+`;
 
+const DeleteText = styled(TextMain)`
+  font-size: 16px;
+`;
 const SelectContainer = styled.View`
   position: absolute;
   top: 48px;
@@ -62,8 +69,33 @@ const MenuSelect = ({ setOpen }: IMenuSelect) => {
   // redux
   const { menuIndex, cart } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+  const [alertShow, setAlertShow] = useState(false);
 
   const dropdownCategory = menuToDropdownValues(cart);
+  const deleteAlertContent = (props) => {
+    return (
+      <Container>
+        <Col style={{ marginTop: 24, marginLeft: 24 }}>
+          <DeleteText>식단 {props + 1}를 삭제하시겠어요?</DeleteText>
+        </Col>
+      </Container>
+    );
+  };
+  const ShowAlert = (props) => {
+    const { index } = props.pick;
+    return (
+      <DAlert
+        alertShow={alertShow}
+        renderContent={() => deleteAlertContent(index)}
+        onConfirm={() => (
+          dispatch(setMenuIndex(index - 1)),
+          dispatch(deleteMenu(index)),
+          setAlertShow(false)
+        )}
+        onCancel={() => setAlertShow(false)}
+      />
+    );
+  };
   return (
     <SelectContainer>
       <FlatList
@@ -79,16 +111,18 @@ const MenuSelect = ({ setOpen }: IMenuSelect) => {
               {item.label}
             </MenuText>
             {item.index == 0 || (
-              <DeleteBtn
-                onPress={() => {
-                  dispatch(setMenuIndex(item.index - 1));
-                  dispatch(deleteMenu(item.index));
-                }}
-              >
-                <DeleteImg
-                  source={require(`~/assets/icons/24_icon=close.png`)}
-                />
-              </DeleteBtn>
+              <>
+                <DeleteBtn
+                  onPress={() => {
+                    setAlertShow(true);
+                  }}
+                >
+                  <DeleteImg
+                    source={require(`~/assets/icons/24_icon=close.png`)}
+                  />
+                  <ShowAlert pick={item} />
+                </DeleteBtn>
+              </>
             )}
           </Menu>
         )}

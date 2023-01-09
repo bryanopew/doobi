@@ -57,7 +57,7 @@ const ArrowIcon = styled.Image`
   background-color: ${colors.backgroundLight};
 `;
 
-const UserInfo3 = ({ navigation: { navigate } }: NavigationProps) => {
+const ThirdInput = ({ navigation: { navigate } }: NavigationProps) => {
   // redux
   const { userInfo, userTarget } = useSelector(
     (state: RootState) => state.userInfo
@@ -206,4 +206,4 @@ const UserInfo3 = ({ navigation: { navigate } }: NavigationProps) => {
   );
 };
 
-export default UserInfo3;
+export default ThirdInput;

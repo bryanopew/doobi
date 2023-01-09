@@ -48,6 +48,17 @@ export const cartSlice = createSlice({
         state.cart[menuIndex].splice(productIndex, 1);
       }
     },
+    checkBoxDeleteProduct: (state, action) => {
+      const { menuIndex, pickedCart } = action.payload;
+      console.log("action:", action.payload);
+      pickedCart.map((el) => {
+        if (hasProduct(state.cart[menuIndex], el)) {
+          const productIndex = getProductIndex(state.cart[menuIndex], el);
+          console.log("deleteProduct: index:", productIndex);
+          return state.cart[menuIndex].splice(productIndex, 1);
+        }
+      });
+    },
     addMenuToCart: (state) => {
       state.cart = [...state.cart, []];
     },
@@ -79,13 +90,18 @@ export const cartSlice = createSlice({
       });
     },
     pickProductCheckBox: (state, action) => {
-      console.log(action.payload);
       let { id, picked } = action.payload;
-      picked === false
-        ? state.pickedCart.push(id)
-        : state.pickedCart.filter((el) => {
-            return el == id;
-          });
+
+      if (picked === true) {
+        state.pickedCart.push(id);
+      } else if (picked === false) {
+        for (let i = 0; i < state.pickedCart.length; i++) {
+          if (state.pickedCart[i] === id) {
+            state.pickedCart.splice(i, 1);
+            i--;
+          }
+        }
+      }
     },
   },
 });
@@ -100,5 +116,6 @@ export const {
   minusProductQuantity,
   makeQuantity,
   pickProductCheckBox,
+  checkBoxDeleteProduct,
 } = cartSlice.actions;
 export default cartSlice.reducer;

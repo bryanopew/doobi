@@ -64,7 +64,7 @@ const CreateDietText = styled.Text`
   font-weight: bold;
 `;
 const EachCheckBoxAndroid = () => {
-  const [state, setState] = useState(true);
+  const [state, setState] = useState(false);
   // const checked = useSelector((state: RootState) => {
   //   return state.checkBox.check;
   // });

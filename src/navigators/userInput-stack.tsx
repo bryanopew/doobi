@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "~/screens/Login";
@@ -20,18 +20,13 @@ const BackArrow = styled.Image`
 `;
 
 const Stack = createNativeStackNavigator();
-const Stacks = () => {
+const InputNav = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShadowVisible: false,
       }}
     >
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{ headerShown: false }}
-      />
       <Stack.Screen
         name="FirstInput"
         component={FirstInput}
@@ -86,4 +81,4 @@ const Stacks = () => {
   );
 };
 
-export default Stacks;
+export default InputNav;

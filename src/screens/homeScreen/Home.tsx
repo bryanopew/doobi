@@ -19,7 +19,7 @@ import colors from "~/styles/colors";
 import { FlatList, Text, View } from "react-native";
 import { getTestData, getDoobiToken, getKakaoToken } from "~/query/query";
 import FoodList from "~/components/home/FoodList";
-import BottomSheetTestScreen from "~/screens/homeScreen/HomeFilter";
+import BottomSheetTestScreen from "~/components/home/homeFilter/HomeFilter";
 import SortModal from "~/components/home/homeFilter/SortModal";
 import MenuSelect from "~/components/common/MenuSelect";
 import MenuHeader from "~/components/common/MenuHeader";

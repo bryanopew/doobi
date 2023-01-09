@@ -45,7 +45,7 @@ const Login = ({ navigation: { navigate } }: NavigationProps) => {
     // TBD: ios 로그인 설정
     const isTokenValid = await validateToken();
     if (isTokenValid) {
-      navigate("Stacks", { screen: "FirstInput" });
+      navigate("InputNav", { screen: "FirstInput" });
     }
     //메인페이지 이동
   };

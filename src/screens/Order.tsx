@@ -176,7 +176,7 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
   };
 
   // AddressEdit스크린에서 다시 Orders스크린 온 경우 active section설정
-  // navigation 적용할 것 -> Stacks.tsx: AddressEdit Screen | AddressEdit.tsx: delete, confirm
+  // navigation 적용할 것 -> InputNav.tsx: AddressEdit Screen | AddressEdit.tsx: delete, confirm
   useEffect(() => {
     handleSubmit(() => {})();
     route.params?.from &&

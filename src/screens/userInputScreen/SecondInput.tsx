@@ -110,10 +110,10 @@ const onHandlePress = (
     })
   );
 
-  navigate("Stacks", { screen: "ThirdInput", params: "" });
+  navigate("InputNav", { screen: "ThirdInput", params: "" });
 };
 
-const UserInfo2 = ({ navigation: { navigate }, route }: NavigationProps) => {
+const SecondInput = ({ navigation: { navigate }, route }: NavigationProps) => {
   const { userInfo } = useSelector((state: RootState) => state.userInfo);
   console.log("userInfo2: userInfo:", userInfo);
   // redux
@@ -194,4 +194,4 @@ const UserInfo2 = ({ navigation: { navigate }, route }: NavigationProps) => {
   );
 };
 
-export default UserInfo2;
+export default SecondInput;

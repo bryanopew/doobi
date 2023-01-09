@@ -294,7 +294,7 @@ const Mypage = ({ navigation: { navigate } }: NavigationProps) => {
           </ProfileTextContainer>
           <UserInfoBtnContainer
             onPress={() => {
-              navigate("Stacks", { screen: "UserInfo1" });
+              navigate("InputNav", { screen: "FirstInput" });
             }}
           >
             <UserInfoBtnText>정보변경</UserInfoBtnText>
