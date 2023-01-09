@@ -16,17 +16,14 @@ import {
 } from "~/styles/styledConsts";
 import DAlert from "~/components/common/DAlert";
 import DBottomSheet from "~/components/common/DBottomSheet";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
-
-const DeleteBtn = styled.TouchableOpacity`
-  width: 36px;
-  height: 36px;
-  justify-content: center;
-  align-items: center;
-`;
-const DeleteBtnText = styled(TextMain)`
-  font-size: 12px;
-`;
+import {
+  Asset,
+  ImagePickerResponse,
+  launchCamera,
+  launchImageLibrary,
+} from "react-native-image-picker";
+import axios from "axios";
+import { useChangeHeaderRight, useChangeHeaderTitle } from "~/util/customHooks";
 
 const Container = styled.View`
   flex: 1;
@@ -142,33 +139,6 @@ const AddOptionBtnText = styled(TextMain)`
   font-weight: 600;
 `;
 
-const useChangeHeaderTitle = (title: string) => {
-  const navigation = useNavigation();
-  useEffect(() => {
-    navigation.setOptions({ headerTitle: title });
-  }, []);
-};
-
-const useChangeHeaderRight = (
-  btnText: string,
-  setAlertShow: React.Dispatch<React.SetStateAction<boolean>>
-) => {
-  const navigation = useNavigation();
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <DeleteBtn
-          onPress={() => {
-            setAlertShow(true);
-          }}
-        >
-          <DeleteBtnText>{btnText}</DeleteBtnText>
-        </DeleteBtn>
-      ),
-    });
-  }, []);
-};
-
 const HistoryDetail = ({
   navigation,
   route: {
@@ -177,21 +147,11 @@ const HistoryDetail = ({
 }: NavigationProps) => {
   const [historyDeleteAlertShow, setHistoryDeleteAlertShow] = useState(false);
   const [imageAddAlertShow, setImageAddAlertShow] = useState(false);
-  interface IImagePicked {
-    fileName?: string;
-    fileSize?: number;
-    height?: number;
-    type?: string;
-    uri?: string;
-    width?: number;
-  }
-  const [imagePicked, setImagePicked] = useState<Array<IImagePicked>>([]);
+  const [imagePicked, setImagePicked] = useState<Array<Asset>>([]);
   useChangeHeaderTitle(date);
   useChangeHeaderRight("삭제", setHistoryDeleteAlertShow);
   // redux
-  const { userInfo, userTarget } = useSelector(
-    (state: RootState) => state.userInfo
-  );
+  const { userTarget } = useSelector((state: RootState) => state.userInfo);
 
   type INutrTargetData = Array<{
     nutrient: string;
@@ -221,13 +181,7 @@ const HistoryDetail = ({
     },
   ];
 
-  const testImageData = [
-    { id: "1", url: "test1" },
-    { id: "2", url: "test2" },
-    { id: "3", url: "test1" },
-  ];
-
-  const renderHistory = (item: IImagePicked) => (
+  const renderHistory = (item: Asset) => (
     <ImageBox
       onPress={() => {
         console.log("imageSource");
@@ -257,18 +211,36 @@ const HistoryDetail = ({
     </DeleteAlertContainer>
   );
 
+  const uploadData = async (fileName: string, uri: string) => {
+    let formData = new FormData();
+    const photo = {
+      uri: uri,
+      type: "multipart/form-data",
+      name: fileName,
+    };
+    formData.append("image", photo);
+    console.log("uploadData: formData: ", formData);
+    // TBD | axios request 추가하기
+    //   axios.post('serverUrl',formData,{
+    //     headers: {'content-type': 'multipart/form-data'}
+    // })
+  };
+
   // imagePicker actions (react-native-image-picker)
   const pickImage = async (method: "camera" | "library") => {
     if (imagePicked.length >= 3) {
       Alert.alert("사진은 3개 까지만 업로드가 가능해요");
       return;
     }
-    const result =
+
+    const result: ImagePickerResponse =
       method === "camera"
         ? await launchCamera({ mediaType: "photo" })
         : await launchImageLibrary({ mediaType: "photo" });
-    if (!result.assets) return;
-    setImagePicked((v) => [...v, result.assets[0]]); // 아 이거 어떻게 없애는거야?
+
+    // TBD | 지금은 state에 저장하는데 나중에 서버에 저장해야함!
+    setImagePicked((v) => [...v, result?.assets[0]]); // 아 이거 어떻게 없애는거야?
+    await uploadData(result?.assets[0].fileName, result?.assets[0].uri);
     setImageAddAlertShow(false);
   };
 
