@@ -22,8 +22,9 @@ import NutrientsProgress from "~/components/common/NutrientsProgress";
 import NutrientPart from "./foodDetailSubScreen/NutrientPart";
 
 const FoodImageContainer = styled.Image`
-  width: ${SCREENWIDTH}px;
-  height: 240px;
+  margin-left: 50px;
+  width: 240px;
+  height: 180px;
 `;
 const SellerText = styled(TextSub)`
   margin-top: 10px;

@@ -8,7 +8,11 @@ import { View, ScrollView, TouchableOpacity } from "react-native";
 import colors from "~/styles/colors";
 import { SCREENWIDTH } from "~/constants/constants";
 import { BASE_URL } from "~/query/urls";
-import { pickProductCheckBox, deleteProduct } from "~/stores/slices/cartSlice";
+import {
+  pickProductCheckBox,
+  deleteProduct,
+  checkBoxDeleteProduct,
+} from "~/stores/slices/cartSlice";
 
 import {
   BtnCTA,
@@ -89,14 +93,20 @@ const CheckAll = (props) => {
     <View>
       <CheckBox
         value={clicked}
-        onValueChange={(value) => setClicked(value)}
+        onValueChange={(value) => {
+          setClicked(value), console.log("전체 선택");
+        }}
         tintColors={{ true: "#30D158" }}
       />
     </View>
   );
 };
 const Cart = () => {
-  const { cart, menuIndex } = useSelector((state: RootState) => state.cart);
+  const { cart, menuIndex, pickedCart } = useSelector(
+    (state: RootState) => state.cart
+  );
+  const dispatch = useDispatch();
+
   const [menuSelectOpen, setMenuSelectOpen] = useState(false);
   const [checkAllClicked, setCheckAllClicked] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -133,13 +143,20 @@ const Cart = () => {
   for (let i = 0; i < 3; i++) {
     productInfoArray.push(getProductInfo(i));
   }
+  // console.log("cart/pickedCart:", pickedCart);
+  // console.log("cart/cartArray:", cart);
+
   return (
     <>
       <ScrollView>
         <Row>
           <CheckAll check={setCheckAllClicked} />
           <CheckBoxText>전체 선택</CheckBoxText>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(checkBoxDeleteProduct({ menuIndex, pickedCart }));
+            }}
+          >
             <DeleteSelect>선택 삭제</DeleteSelect>
           </TouchableOpacity>
         </Row>

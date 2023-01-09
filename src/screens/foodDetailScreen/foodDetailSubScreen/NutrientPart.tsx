@@ -12,6 +12,7 @@ import {
   TextMain,
   TextSub,
 } from "~/styles/styledConsts";
+import colors from "~/styles/colors";
 
 const HeaderText = styled(TextMain)`
   font-size: 18px;
@@ -23,7 +24,7 @@ const ProductImage = styled.Image`
 `;
 const heads = ["총내용량", "250g", "호팔님의 1일 목표섭취량에 대한 비율"];
 const bodyDatas = [
-  ["칼로리", [["", "364kcal", "28%", ""]]],
+  ["칼로리", [["364kcal", "28%"]]],
   ["나트륨", [["", "472mg", "28%", ""]]],
   ["탄수화물", [["", "47g", "28%", ""]]],
   ["당류", [["", "2g", "28%", ""]]],
@@ -98,11 +99,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 50,
     paddingHorizontal: 4,
-    height: 56,
+    height: 60,
   },
   borderStyle: {
     borderWidth: 1,
-    borderBottomColor: "black",
+    borderColor: colors.inActivated,
   },
 });
 const NutrientPart = () => {

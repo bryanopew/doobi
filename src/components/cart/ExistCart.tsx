@@ -28,6 +28,7 @@ import {
 } from "~/styles/styledConsts";
 
 import Quantity from "~/components/cart/Quantity";
+import { useLinkProps } from "@react-navigation/native";
 
 const Thumbnail = styled.Image`
   width: 100px;
@@ -51,14 +52,7 @@ const NutrSummaryContainer = styled.View`
   justify-content: space-between;
   background-color: ${colors.white};
 `;
-const CheckBoxText = styled(TextMain)`
-  font-size: 14px;
-`;
-const DeleteSelect = styled(TextMain)`
-  font-size: 14px;
-  margin-left: 170px;
-  border-width: 1px;
-`;
+
 const SellerText = styled(TextMain)`
   font-size: 14px;
   font-weight: bold;
@@ -99,28 +93,15 @@ const DeleteBtn = styled.Image`
 const EachCheckBoxAndroid = (props) => {
   const [picked, setPicked] = useState(false);
   const dispatch = useDispatch();
+  console.log(props);
   return (
     <View>
       <CheckBox
         value={picked}
         onValueChange={(value) => {
           setPicked(value);
-          dispatch(pickProductCheckBox({ id: props.id, picked }));
+          dispatch(pickProductCheckBox({ id: props.id, picked: !picked }));
         }}
-        tintColors={{ true: "#30D158" }}
-      />
-    </View>
-  );
-};
-
-const CheckAll = (props) => {
-  const [clicked, setClicked] = useState(false);
-  props.check(clicked);
-  return (
-    <View>
-      <CheckBox
-        value={clicked}
-        onValueChange={(value) => setClicked(value)}
         tintColors={{ true: "#30D158" }}
       />
     </View>
@@ -132,6 +113,7 @@ const ExistCart = (props) => {
   const { cart, menuIndex, pickedCart } = useSelector(
     (state: RootState) => state.cart
   );
+  console.log(props);
   const [data, setData] = useState();
   const calculatelPrice = () => {
     let price = 0;
@@ -140,13 +122,7 @@ const ExistCart = (props) => {
     });
     return price;
   };
-  console.log("existCart/pickedCart:", pickedCart);
-  console.log(
-    "filtered:",
-    pickedCart.filter((el) => {
-      return "PD20220713000000045" !== el;
-    })
-  );
+
   const totalPrice = calculatelPrice();
   useEffect(() => {
     sendTotalPrice(totalPrice);
@@ -161,7 +137,10 @@ const ExistCart = (props) => {
           <React.Fragment key={el.productNo}>
             <Row>
               <View>
-                <EachCheckBoxAndroid id={el.productNo} />
+                <EachCheckBoxAndroid
+                  id={el.productNo}
+                  checkEvery={checkEvery}
+                />
                 <Thumbnail
                   source={{
                     uri: `${BASE_URL}${el?.mainAttUrl}`,

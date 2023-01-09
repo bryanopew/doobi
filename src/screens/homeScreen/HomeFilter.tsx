@@ -12,21 +12,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 import styled from "styled-components/native";
+import {
+  BtnCTA,
+  BtnText,
+  Col,
+  Container,
+  HorizontalLine,
+  HorizontalSpace,
+  Row,
+  TextMain,
+  TextSub,
+} from "~/styles/styledConsts";
 
 import MenuFilterScreenStack from "~/navigators/home-filter-stack";
 
-const FilterHeaderContainer = styled.View`
-  flex-direction: row;
-`;
-const FilterHeaderText = styled.Text`
-  font-weight: bold;
-  font-size: 17px;
-  margin-right: 20px;
-  margin-left: 5px;
-  margin-top: 20px;
-  margin-bottom: 15px;
-`;
-const FilterHeaderButton = styled.TouchableOpacity``;
 const BottomSheet = (props) => {
   const { modalVisible, setModalVisible, index } = props;
   const screenHeight = Dimensions.get("screen").height;
@@ -89,6 +88,7 @@ const BottomSheet = (props) => {
           <TouchableWithoutFeedback onPress={closeModal}>
             <View style={styles.background} />
           </TouchableWithoutFeedback>
+
           <Animated.View
             style={{
               ...styles.bottomSheetContainer,
@@ -114,10 +114,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bottomSheetContainer: {
-    height: 500,
+    height: 480,
     backgroundColor: "white",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   rootContainer: {
     justifyContent: "center",
@@ -142,7 +142,6 @@ const FilterButton = (props) => {
 
 const MenuFilterModal = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const userClickFilter = () => {};
   const pressButton = () => {
     setModalVisible(true);
   };

@@ -1,5 +1,5 @@
 // export const BASE_URL = `http://13.125.244.117:8080`;
-export const BASE_URL = `http://15.164.96.218:8080`;
+export const BASE_URL = `http://15.165.159.244:8080`;
 // >>>>>>> feature/home
 export const GET_TOKEN = `${BASE_URL}/api/every/token/get-token`; //토큰 조회
 export const GET_AUTH = `${BASE_URL}/api/member/auth/get-auth`; //인증 여부 조회

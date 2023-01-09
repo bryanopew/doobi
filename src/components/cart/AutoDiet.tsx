@@ -1,72 +1,24 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components/native";
-import { useDispatch, useSelector } from "react-redux";
-import CheckBox from "@react-native-community/checkbox";
-
-import { RootState } from "~/stores/store";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import colors from "~/styles/colors";
-import { SCREENWIDTH } from "~/constants/constants";
-import { BASE_URL } from "~/query/urls";
-import { addProductToMenu, deleteProduct } from "~/stores/slices/cartSlice";
-
+import React, { useEffect, useRef, useState, Component } from "react";
 import {
-  BtnCTA,
-  BtnText,
-  Col,
-  Container,
-  HorizontalLine,
-  HorizontalSpace,
-  Row,
-  TextMain,
-  TextSub,
-} from "~/styles/styledConsts";
-
-const Thumbnail = styled.Image`
-  width: 100px;
-  height: 100px;
-  /* background-color: ${colors.highlight}; */
-`;
-const ProductInfoContainer = styled.View`
-  flex: 1;
-  height: 120px;
-  margin-left: 16px;
-  margin-top: 15px;
-  justify-content: space-between;
-  /* background-color: ${colors.highlight}; */
-`;
-const NutrSummaryContainer = styled.View`
-  flex-direction: row;
-  width: 110%;
-  height: 22px;
-  border-radius: 5px;
-  margin-top: 5px;
-  justify-content: space-between;
-  background-color: ${colors.white};
-`;
-const MainText = styled(TextSub)`
-  margin-top: 20px;
-  font-size: 14px;
-`;
-const AutoText = styled(TextSub)`
-  font-size: 14px;
-  padding: 35px;
-`;
-const AddButtonImage = styled.Image`
-  width: 30px;
-  height: 30px;
-  margin-left: 60px;
-  left: 25px;
-`;
-
-const AutoButton = styled.TouchableOpacity`
-  margin-top: 10px;
-  border-width: 1px;
-  border-color: ${colors.main};
-  border-radius: 3px;
-`;
-
+  View,
+  StyleSheet,
+  Text,
+  Animated,
+  TouchableWithoutFeedback,
+  Dimensions,
+  PanResponder,
+  Button,
+  TouchableOpacity,
+  ScrollView,
+  Platform,
+  Image,
+  SafeAreaView,
+} from "react-native";
 import Modal from "react-native-modal";
+import styled from "styled-components/native";
+import CheckBox from "@react-native-community/checkbox";
+import { useSelector, useDispatch } from "react-redux";
+
 import { Slider } from "~/components/home/homeFilter/slider/Slider";
 import { SliderContainer } from "~/components/home/homeFilter/slider/SliderContainer";
 
@@ -214,16 +166,16 @@ const Space = styled.View`
   width: 300px;
 `;
 const EachCheckBoxAndroid = () => {
-  const [state, setState] = useState(false);
-  // const checked = useSelector((state: RootState) => {
-  //   return state.checkBox.check;
-  // });
+  const [state, setState] = useState(true);
+  const checked = useSelector((state: RootState) => {
+    return state.checkBox.check;
+  });
   const cartCheckAll = () => {
     setState(!state);
   };
-  // useEffect(() => {
-  //   cartCheckAll();
-  // }, [checked]);
+  useEffect(() => {
+    cartCheckAll();
+  }, [checked]);
   return (
     <View style={styles.container}>
       <CheckBox
@@ -243,13 +195,13 @@ const end = () => {
 const change = () => {
   console.log("change");
 };
-const AutoDiet = (props: any): React.ReactElement => {
+const AutoDiet = (Props: any): React.ReactElement => {
   //State를 이용하여 Modal을 제어함
+  const [modalVisible, setModalVisible] = useState<boolean>(true);
   //Output을 State로 받아서 화면에 표출하거나 정보 값으로 활용
   const [modalOutput, setModalOutput] = useState<string>("Open Modal");
-  const { modalVisible, setModalVisible } = props;
   return (
-    <>
+    <StyledSafeAreaView>
       {/* Modal이 StyledModalOpenButton의 아래에 있더라도 무관함. Container안에 들어가만 있으면 됨 */}
       <Modal
         //isVisible Props에 State 값을 물려주어 On/off control
@@ -352,33 +304,17 @@ const AutoDiet = (props: any): React.ReactElement => {
           </StyledModalButton>
         </StyledModalContainer>
       </Modal>
-    </>
+
+      <StyledModalOpenButton
+        onPress={() => {
+          setModalVisible(true);
+        }}
+      >
+        <Text>귀찮을 땐 자동구성</Text>
+        {/* 모달에서 선택 결과 값을 State로 받아서 화면에 표시 */}
+      </StyledModalOpenButton>
+    </StyledSafeAreaView>
   );
 };
 
-const EmptyCart = () => {
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
-
-  //data로 받아온값 확인
-  return (
-    <>
-      <MainText>식품을 추가해보세요</MainText>
-      <AutoButton>
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <Row>
-            <AutoDiet
-              modalVisible={modalVisible}
-              setModalVisible={setModalVisible}
-            />
-            <AddButtonImage
-              source={require(`~/assets/icons/24_autoMenu_activated.png`)}
-            />
-            <AutoText>귀찮을땐 자동구성</AutoText>
-          </Row>
-        </TouchableOpacity>
-      </AutoButton>
-    </>
-  );
-};
-
-export default EmptyCart;
+export default AutoDiet;

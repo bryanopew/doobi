@@ -14,67 +14,48 @@ import {
   Image,
 } from "react-native";
 import styled from "styled-components/native";
+import { Col, Row, TextMain, TextSub, Container } from "~/styles/styledConsts";
+import colors from "~/styles/colors";
 
-const FilterHeaderContainer = styled.View`
-  flex-direction: row;
+const SortIconImage = styled.Image`
+width:24px
+height:24px
 `;
-const FilterHeaderText = styled.Text`
-  font-weight: bold;
-  font-size: 17px;
-  margin-right: 20px;
-  margin-left: 5px;
-  margin-top: 20px;
-  margin-bottom: 15px;
-`;
-
 const CategoryListContainer = styled.View`
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 12px;
-  margin-bottom: 12px;
   border-top-width: 0.5px;
-  border-color: grey;
+  border-color: ${colors.inActivated};
+  padding: 10px;
 `;
 
 const CategoryListText = styled.Text`
-  margin-top: 12px;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 16px;
+  color: ${colors.textMain};
 `;
 
 const FilterButtonContainer = styled.View`
   flex-direction: row;
-  justify-content: center;
 `;
 
-const RowContainer = styled.View`
-  flex-direction: row;
-`;
-
-// const ButtonContainer = styled.View`
-//   flex: 1;
-//   border: 0.5px grey;
-//   border-radius: 10px;
-//   align-items: center;
-//   margin: 10px;
-// `;
 const StyledButton = styled.TouchableOpacity`
-  align-items: center;
-  flex: 1;
-  padding: 15px;
-  background-color: white;
-  border-width: 1px;
-  border-radius: 5px;
-  margin: 10px;
-  margin-top: 20px;
-  border-color: #8f8f8f;
+align-items: center;
+flex: 1;
+height: 50px
+padding: 15px;
+border-width: 1px;
+border-radius: 4px;
+margin: 5px;
+margin-top: 20px;
+border-color: ${colors.inActivated};
 `;
 const ButtonText = styled.Text`
-  font-weight: bold;
-  color: #8f8f8f;
+  color: ${colors.textSub};
+  font-size: 16px;
 `;
-const CategoryListButton = styled.TouchableOpacity``;
+const CategoryListButton = styled.TouchableOpacity`
+  margin-top: 10px;
+`;
 const CategoryFilter = ({ navigation }): JSX.Element => {
   const [click, setClick] = useState();
   const category = [
@@ -84,31 +65,30 @@ const CategoryFilter = ({ navigation }): JSX.Element => {
   ];
 
   return (
-    <ScrollView style={styles.wrapper}>
-      {category.map((i, index) => (
-        <CategoryListButton key={i.id}>
-          <CategoryListContainer style={[index === 0 && { borderTopWidth: 0 }]}>
-            <RowContainer>
-              <CategoryListText>{i.text}</CategoryListText>
-              <Image
-                style={{
-                  transform: [{ scale: 0.55 }],
-                }}
-                source={require("~/assets/icons/24_sort.png")}
-              />
-            </RowContainer>
-          </CategoryListContainer>
-        </CategoryListButton>
-      ))}
-      <FilterButtonContainer>
-        <StyledButton>
-          <ButtonText>초기화</ButtonText>
-        </StyledButton>
-        <StyledButton>
-          <ButtonText>확인</ButtonText>
-        </StyledButton>
-      </FilterButtonContainer>
-    </ScrollView>
+    <Container>
+      <ScrollView>
+        {category.map((i, index) => (
+          <CategoryListButton key={i.id}>
+            <CategoryListContainer
+              style={[index === 0 && { borderTopWidth: 0 }]}
+            >
+              <Row style={{ marginTop: 8 }}>
+                <CategoryListText>{i.text}</CategoryListText>
+                <SortIconImage source={require("~/assets/icons/24_sort.png")} />
+              </Row>
+            </CategoryListContainer>
+          </CategoryListButton>
+        ))}
+        <FilterButtonContainer>
+          <StyledButton>
+            <ButtonText>초기화</ButtonText>
+          </StyledButton>
+          <StyledButton>
+            <ButtonText>확인</ButtonText>
+          </StyledButton>
+        </FilterButtonContainer>
+      </ScrollView>
+    </Container>
   );
 };
 
@@ -220,8 +200,11 @@ const styles = StyleSheet.create({
 const SortButton = (list, pressButton) => {
   // console.log(list);
   return (
-    <TouchableOpacity style={styles.button} onPress={list.onPress}>
-      <Text>정렬</Text>
+    <TouchableOpacity onPress={list.onPress}>
+      <Row>
+        <Text>정렬</Text>
+        <SortIconImage source={require(`~/assets/icons/24_sort.png`)} />
+      </Row>
     </TouchableOpacity>
   );
 };

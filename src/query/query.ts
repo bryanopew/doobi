@@ -47,7 +47,7 @@ export const validateToken = async () => {
         // 인증여부 조회
         const auth = await axios.get(`${GET_AUTH}`, {
           headers: {
-            authentication: `Bearer ${accessToken}`,
+            authorization: `Bearer ${accessToken}`,
           },
         });
         console.log("auth res: ", auth.data);
@@ -57,7 +57,7 @@ export const validateToken = async () => {
         // 토큰 재발급
         const reIssue = await axios.get(`${RE_ISSUE_TOKEN}`, {
           headers: {
-            authentication: `Bearer ${refreshToken}`,
+            authorization: `Bearer ${refreshToken}`,
           },
         });
         await storeToken(reIssue.data.accessToken, reIssue.data.refreshToken);
@@ -92,7 +92,7 @@ export const getTestData = async () => {
       `${PRODUCT_LIST}?searchText=도시락&categoryCd=&sort`,
       {
         headers: {
-          authentication: `Bearer ${accessToken}`,
+          authorization: `Bearer ${accessToken}`,
         },
       }
     );
