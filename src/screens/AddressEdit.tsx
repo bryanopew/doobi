@@ -147,7 +147,7 @@ const AddressEdit = ({
                       currentAddressId === 0 ? 0 : currentAddressId - 1
                     )
                   );
-                  navigate("MyPageStacks", {
+                  navigate("HistoryNav", {
                     screen: "Order",
                     params: { from: "AddressEdit" },
                   });
@@ -196,7 +196,7 @@ const AddressEdit = ({
               );
               console.log("onPress: address.length: ", address.length);
               dispatch(setSelectedAddressId(address.length));
-              navigate("MyPageStacks", {
+              navigate("HistoryNav", {
                 screen: "Order",
                 params: { from: "AddressEdit" },
               });
@@ -215,7 +215,7 @@ const AddressEdit = ({
                 currentAddressId,
               })
             );
-            navigate("MyPageStacks", {
+            navigate("HistoryNav", {
               screen: "Order",
               params: { from: "AddressEdit" },
             });

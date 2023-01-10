@@ -22,7 +22,7 @@ const BackArrow = styled.Image`
   height: 24px;
 `;
 
-const BottomTab = () => {
+const BottomTabNav = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -123,4 +123,4 @@ const BottomTab = () => {
   );
 };
 
-export default BottomTab;
+export default BottomTabNav;

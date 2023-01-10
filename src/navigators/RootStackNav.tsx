@@ -1,16 +1,17 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import BottomTab from "./bottom-tab";
-import InputNav from "./userInput-stack";
+import BottomTabNav from "./BottomTabNav";
+import InputNav from "./InputNav";
 import HomeStack from "./home-stack";
 import FoodList from "~/components/home/FoodList";
-import MyPageStacks from "./mypage-stack";
+import HistoryNav from "./HistoryNav";
 import Login from "~/screens/Login";
 import FoodDetail from "~/screens/foodDetailScreen/FoodDetail";
+import OrderNav from "./OrderNav";
 
 const Stack = createNativeStackNavigator();
 
-const RootStack = () => {
+const RootStackNav = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
@@ -19,14 +20,14 @@ const RootStack = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="InputNav" component={InputNav} />
-      <Stack.Screen name="BottomTab" component={BottomTab} />
-      {/* <Stack.Screen name="OrderNav" component={OrderNav} /> */}
+      <Stack.Screen name="BottomTabNav" component={BottomTabNav} />
       <Stack.Screen name="FoodDetail" component={FoodDetail} />
+      <Stack.Screen name="OrderNav" component={OrderNav} />
       {/* <Stack.Screen name="HistroyNav" component={HistroyNav} /> */}
       {/* <Stack.Screen name="PaymentHistroyNav" component={PaymentHistroyNav} /> */}
-      <Stack.Screen name="MyPageStacks" component={MyPageStacks} />
+      <Stack.Screen name="HistoryNav" component={HistoryNav} />
     </Stack.Navigator>
   );
 };
 
-export default RootStack;
+export default RootStackNav;

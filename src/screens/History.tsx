@@ -82,7 +82,7 @@ const History = ({ navigation: { navigate } }: NavigationProps) => {
     }
     getUserBaseLine();
     setAlertShow(false);
-    navigate("MyPageStacks", {
+    navigate("HistoryNav", {
       screen: "HistoryDetail",
       params: { date: "2022.07.11" },
     });

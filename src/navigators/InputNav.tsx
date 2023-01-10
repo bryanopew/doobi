@@ -57,26 +57,6 @@ const InputNav = () => {
           ),
         }}
       />
-      <Stack.Screen
-        name="AddressEdit"
-        component={AddressEdit}
-        options={{
-          headerTitle: "배송지 수정",
-          headerTitleAlign: "center",
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() =>
-                navigate("MyPageStacks", {
-                  screen: "Order",
-                  params: { from: "AddressEdit" },
-                })
-              }
-            >
-              <BackArrow source={require(`~/assets/icons/24_back.png`)} />
-            </TouchableOpacity>
-          ),
-        }}
-      />
     </Stack.Navigator>
   );
 };

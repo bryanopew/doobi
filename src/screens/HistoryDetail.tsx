@@ -201,7 +201,7 @@ const HistoryDetail = ({
   const onDeleteAlertConfirm = () => {
     console.log("기록삭제");
     // TBD | 기록삭제 로직
-    navigation.navigate("MyPageStacks", { screen: "History" });
+    navigation.navigate("HistoryNav", { screen: "History" });
   };
 
   const renderDeleteAlertContent = () => (

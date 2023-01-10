@@ -197,7 +197,7 @@ const ThirdInput = ({ navigation: { navigate } }: NavigationProps) => {
             dispatch: dispatch,
           };
           submitActionsByMethod[calculationMethod](submitArgs);
-          navigate("BottomTab", { screen: "Home" });
+          navigate("BottomTabNav", { screen: "Home" });
         }}
       >
         <BtnText>완료</BtnText>

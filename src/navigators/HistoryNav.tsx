@@ -15,9 +15,7 @@ const BackArrow = styled.Image`
 `;
 
 const Stack = createNativeStackNavigator();
-const MyPageStacks = ({
-  navigation: { navigate, goBack },
-}: NavigationProps) => {
+const HistoryNav = ({ navigation: { navigate, goBack } }: NavigationProps) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -38,7 +36,7 @@ const MyPageStacks = ({
           },
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => navigate("BottomTab", { screen: "Mypage" })}
+              onPress={() => navigate("BottomTabNav", { screen: "Mypage" })}
             >
               <BackArrow source={require(`~/assets/icons/24_back.png`)} />
             </TouchableOpacity>
@@ -59,29 +57,7 @@ const MyPageStacks = ({
           },
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => navigate("MyPageStacks", { screen: "History" })}
-            >
-              <BackArrow source={require(`~/assets/icons/24_back.png`)} />
-            </TouchableOpacity>
-          ),
-        }}
-      />
-
-      <Stack.Screen
-        name="Order"
-        component={Order}
-        options={{
-          headerShown: true,
-          headerTitle: "주문 / 결제",
-          headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontSize: 18,
-            fontWeight: "bold",
-            color: colors.textMain,
-          },
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigate("BottomTab", { screen: "Cart" })}
+              onPress={() => navigate("HistoryNav", { screen: "History" })}
             >
               <BackArrow source={require(`~/assets/icons/24_back.png`)} />
             </TouchableOpacity>
@@ -92,4 +68,4 @@ const MyPageStacks = ({
   );
 };
 
-export default MyPageStacks;
+export default HistoryNav;

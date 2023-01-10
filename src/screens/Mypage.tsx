@@ -106,9 +106,9 @@ interface INavigateByBtnId {
   [key: string]: (btnId: string, navigate: Function) => void;
 }
 const navigateByBtnId: INavigateByBtnId = {
-  History: (btnId, navigate) => navigate("MyPageStacks", { screen: btnId }),
-  Likes: (btnId, navigate) => navigate("BottomTab", { screen: btnId }),
-  Order: (btnId, navigate) => navigate("MyPageStacks", { screen: btnId }),
+  History: (btnId, navigate) => navigate("HistoryNav", { screen: btnId }),
+  Likes: (btnId, navigate) => navigate("BottomTabNav", { screen: btnId }),
+  Order: (btnId, navigate) => navigate("HistoryNav", { screen: btnId }),
 };
 
 const Mypage = ({ navigation: { navigate } }: NavigationProps) => {
