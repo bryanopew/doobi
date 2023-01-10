@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import { BtnCTA, BtnText } from "~/styles/styledConsts";
 import colors from "~/styles/colors";
-import { validateToken } from "~/query/query";
+import { getUserBaseLine, validateToken } from "~/query/query";
 import { NavigationProps } from "~/constants/constants";
 
 const Container = styled.View`
@@ -45,7 +45,7 @@ const Login = ({ navigation: { navigate } }: NavigationProps) => {
     // TBD: ios 로그인 설정
     const isTokenValid = await validateToken();
     if (isTokenValid) {
-      navigate("Stacks", { screen: "FirstInput" });
+      navigate("InputNav", { screen: "FirstInput" });
     }
     //메인페이지 이동
   };
@@ -55,6 +55,7 @@ const Login = ({ navigation: { navigate } }: NavigationProps) => {
       <Box>
         <TitleText>{"식단조절은\n두비에게"}</TitleText>
         <BtnKakaoLogin btnStyle="kakao" onPress={signInWithKakao}>
+          {/* <BtnKakaoLogin btnStyle="kakao" onPress={getUserBaseLine}> */}
           <BtnTextKakao>카카오 로그인</BtnTextKakao>
         </BtnKakaoLogin>
       </Box>

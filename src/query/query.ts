@@ -1,7 +1,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KakaoOAuthToken, login } from "@react-native-seoul/kakao-login";
 import axios from "axios";
-import { PRODUCT_LIST, GET_TOKEN, GET_AUTH, RE_ISSUE_TOKEN } from "./urls";
+import {
+  PRODUCT_LIST,
+  GET_TOKEN,
+  GET_AUTH,
+  RE_ISSUE_TOKEN,
+  GET_BASE_LINE,
+  GET_USER,
+} from "./urls";
 
 // doobi server------------------ //
 // 카카오 토큰으로 DoobiToken 발급
@@ -86,16 +93,30 @@ export const getTestData = async () => {
   const isTokenValid = await validateToken();
   console.log("getTestData: isTokenValid: ", isTokenValid);
 
-  if (isTokenValid) {
-    const { accessToken, refreshToken } = await getStoredToken();
-    const res = await axios.get(
-      `${PRODUCT_LIST}?searchText=도시락&categoryCd=&sort`,
-      {
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    return res.data.slice(0, 3);
-  }
+  if (!isTokenValid) return;
+
+  const { accessToken, refreshToken } = await getStoredToken();
+  const res = await axios.get(
+    `${PRODUCT_LIST}?searchText=도시락&categoryCd=&sort`,
+    {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  return res.data.slice(0, 3);
+};
+
+export const getUserBaseLine = async () => {
+  console.log("getUserBaseLine");
+  const isTokenValid = await validateToken();
+  if (!isTokenValid) return;
+  const { accessToken, refreshToken } = await getStoredToken();
+  const res = await axios.get(GET_BASE_LINE, {
+    // const res = await axios.get(GET_USER, {
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+    },
+  });
+  console.log("getUserBaseLine: res:", res.data);
 };

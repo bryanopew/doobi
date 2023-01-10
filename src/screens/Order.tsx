@@ -53,7 +53,7 @@ const UpDownArrow = styled.Image`
   margin-left: 8px;
 `;
 
-const Orders = ({ navigation: { navigate }, route }: NavigationProps) => {
+const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
   // redux
   const { cart } = useSelector((state: RootState) => state.cart);
   const { orderInfo, selectedAddressId } = useSelector(
@@ -176,7 +176,7 @@ const Orders = ({ navigation: { navigate }, route }: NavigationProps) => {
   };
 
   // AddressEdit스크린에서 다시 Orders스크린 온 경우 active section설정
-  // navigation 적용할 것 -> Stacks.tsx: AddressEdit Screen | AddressEdit.tsx: delete, confirm
+  // navigation 적용할 것 -> InputNav.tsx: AddressEdit Screen | AddressEdit.tsx: delete, confirm
   useEffect(() => {
     handleSubmit(() => {})();
     route.params?.from &&
@@ -222,4 +222,4 @@ const Orders = ({ navigation: { navigate }, route }: NavigationProps) => {
   );
 };
 
-export default Orders;
+export default Order;

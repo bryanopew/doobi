@@ -18,7 +18,7 @@ import styled from "styled-components/native";
 import Home from "~/screens/homeScreen/Home";
 import FoodDetail from "~/screens/foodDetailScreen/FoodDetail";
 import FoodList from "~/components/home/FoodList";
-import MenuFilterModal from "~/screens/homeScreen/HomeFilter";
+import MenuFilterModal from "~/components/home/homeFilter/HomeFilter";
 
 const Stack = createNativeStackNavigator();
 const BasketIcon = styled.Image`

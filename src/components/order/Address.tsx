@@ -123,7 +123,7 @@ const Address = ({
   const [isChecked, setIsChecked] = useState(false);
 
   // react-hook-form 주문자정보와 동일 체크한 경우 필요
-  // + 페이지 이동 전에 Orders 스크린에서 default값 남겨주기 위해 필요
+  // + 페이지 이동 전에 Order 스크린에서 default값 남겨주기 위해 필요
   const ordererValue = useWatch({ control, name: "orderer" });
   const ordererContactValue = useWatch({ control, name: "ordererContact" });
   const receiverValue = useWatch({ control, name: "receiver" });
@@ -189,7 +189,7 @@ const Address = ({
             </SelectContainer>
             <EditBtn
               onPress={() => {
-                navigation.navigate("Stacks", {
+                navigation.navigate("InputNav", {
                   screen: "AddressEdit",
                   params: {
                     currentAddressId: index,
@@ -225,7 +225,7 @@ const Address = ({
               receiverContact: receiverContactValue,
             })
           );
-          navigation.navigate("Stacks", {
+          navigation.navigate("InputNav", {
             screen: "AddressEdit",
             params: {},
           });

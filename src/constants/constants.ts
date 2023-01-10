@@ -47,7 +47,7 @@ export const myPageBtns = [
   { title: "몸무게 변경", btnId: "ChangeWeight" },
   { title: "내 기록", btnId: "History" },
   { title: "찜한 식품", btnId: "Likes" },
-  { title: "주문내역", btnId: "Orders" },
+  { title: "주문내역", btnId: "Order" },
 ];
 
 interface ITimeToMinutes {
@@ -214,6 +214,8 @@ export const validationRules: IValidationRules = {
 export interface NavigationProps {
   navigation: {
     navigate: Function;
+    goBack: Function;
+    setOptions: Function;
   };
   route?: any;
 }

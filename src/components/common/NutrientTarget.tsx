@@ -10,10 +10,9 @@ const Container = styled.TouchableOpacity`
   height: 50px;
   width: ${(SCREENWIDTH - 36) / 4}px;
 `;
-
 const NutrValue = styled(TextMain)`
-  margin-top: 4px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
 `;
 
 const ColorBar = styled.View`
@@ -22,24 +21,25 @@ const ColorBar = styled.View`
   margin-top: 4px;
   background-color: ${({ color }: { color: string }) => color};
 `;
-
 const Nutr = styled(TextMain)`
-  font-size: 14px;
-  font-weight: bold;
+  margin-top: 4px;
+  font-size: 12px;
 `;
 
 interface INutrTarget {
   nutrient: string;
   value: string;
   color: string;
-  onPress: () => void;
+  onPress?: () => void;
 }
 const NutrTarget = ({ nutrient, value, color, onPress }: INutrTarget) => {
   return (
-    <Container onPress={onPress}>
-      <Nutr>{parseInt(value)}</Nutr>
+    <Container onPress={onPress ? onPress : () => {}}>
+      <NutrValue>
+        {nutrient === `칼로리` ? `${value} kcal` : `${value} g`}
+      </NutrValue>
       <ColorBar color={color} />
-      <NutrValue>{nutrient}</NutrValue>
+      <Nutr>{nutrient}</Nutr>
     </Container>
   );
 };

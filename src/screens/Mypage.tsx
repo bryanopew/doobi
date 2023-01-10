@@ -13,7 +13,7 @@ import styled from "styled-components/native";
 import colors from "~/styles/colors";
 import DAlert from "~/components/common/DAlert";
 import { myPageBtns, NavigationProps } from "~/constants/constants";
-import NutrTarget from "~/components/myPage/NutrientTarget";
+import NutrTarget from "~/components/common/NutrientTarget";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "~/stores/store";
 import CalChangeAlert from "~/components/myPage/CalorieChangeAlert";
@@ -26,6 +26,7 @@ import {
 import { useForm, useWatch } from "react-hook-form";
 import WeightChangeAlert from "~/components/myPage/WeightChangeAlert";
 import { updateUserInfo } from "~/stores/slices/userInfoSlice";
+import { changeNutrByWeight } from "~/util/alertActions";
 
 const Container = styled.View`
   flex: 1;
@@ -105,9 +106,9 @@ interface INavigateByBtnId {
   [key: string]: (btnId: string, navigate: Function) => void;
 }
 const navigateByBtnId: INavigateByBtnId = {
-  History: (btnId, navigate) => navigate("MyPageStacks", { screen: btnId }),
-  Likes: (btnId, navigate) => navigate("BottomTab", { screen: btnId }),
-  Orders: (btnId, navigate) => navigate("MyPageStacks", { screen: btnId }),
+  History: (btnId, navigate) => navigate("HistoryNav", { screen: btnId }),
+  Likes: (btnId, navigate) => navigate("BottomTabNav", { screen: btnId }),
+  Order: (btnId, navigate) => navigate("HistoryNav", { screen: btnId }),
 };
 
 const Mypage = ({ navigation: { navigate } }: NavigationProps) => {
@@ -243,37 +244,12 @@ const Mypage = ({ navigation: { navigate } }: NavigationProps) => {
 
   const onAlertConfirm = () => {
     if (alertType === "weight") {
+      const res = changeNutrByWeight(userInfo, weightValue);
       if (autoCalculate) {
         // TBD | store, 서버에 weight, 바뀐 target정보 Put
-        const bmr = calculateBMR(
-          userInfo.gender,
-          userInfo.age,
-          userInfo.height,
-          weightValue
-        );
-        const res = calculateNutrTarget(
-          weightValue,
-          userInfo.weightTimeCd,
-          userInfo.aerobicTimeCd,
-          userInfo.dietPurposecd,
-          bmr
-        );
         dispatch(updateUserInfo(res));
       } else {
         // TBD | store, 서버에 weight, tmr정보만 Put
-        const bmr = calculateBMR(
-          userInfo.gender,
-          userInfo.age,
-          userInfo.height,
-          weightValue
-        );
-        const res = calculateNutrTarget(
-          weightValue,
-          userInfo.weightTimeCd,
-          userInfo.aerobicTimeCd,
-          userInfo.dietPurposecd,
-          bmr
-        );
         dispatch(updateUserInfo({ tmr: res.tmr, weight: weightValue }));
       }
     } else {
@@ -318,7 +294,7 @@ const Mypage = ({ navigation: { navigate } }: NavigationProps) => {
           </ProfileTextContainer>
           <UserInfoBtnContainer
             onPress={() => {
-              navigate("Stacks", { screen: "UserInfo1" });
+              navigate("InputNav", { screen: "FirstInput" });
             }}
           >
             <UserInfoBtnText>정보변경</UserInfoBtnText>

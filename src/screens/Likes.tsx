@@ -45,19 +45,6 @@ const Likes = () => {
   const dispatch = useDispatch();
   // test data
   const [menuSelectOpen, setMenuSelectOpen] = useState(false);
-  // console.log("likeFoods: ", likeFoods);
-
-  // useEffect(() =>  {
-  //   // 처음 렌더링 때 서버에서 likes 가져와서 useState로 관리
-  //   // like 식품 삭제시에는 서버에서 delete + state에서 제거
-  //   // 식품 상세페이지에서 찜 누르면 서버에 저장시켜서 like page 왔을 때 어차피 다시 렌더링
-  //   // like page에서 상세페이지 갔다가 찜 누르고 뒤로가기 버튼으로 돌아온 경우는???????
-  //   const getLikeData = async () => {
-  //     const res = await getTestData();
-  //     setLikeData(res);
-  //   };
-  //   getLikeData();
-  // }, []);
 
   return (
     <Container>
@@ -73,10 +60,9 @@ const Likes = () => {
         <NoOfFoods>{likeFoods?.length}</NoOfFoods>
       </Row>
       <HorizontalLine style={{ marginTop: 8 }} />
-      {/* 여기 이상함 ㅠㅠ */}
-      {/* <FlatList
+      <FlatList
         style={{ marginTop: 24 }}
-        data={temp}
+        data={likeFoods}
         renderItem={(item) => (
           <LikeFoodList item={item} menuIndex={menuIndex} />
         )}
@@ -84,18 +70,7 @@ const Likes = () => {
         keyExtractor={(item) => item.productNo}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 80 }}
-      /> */}
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <HorizontalSpace height={24} />
-        {likeFoods.map((food, index) => {
-          return (
-            <Col key={index}>
-              <LikeFoodList item={{ item: food }} menuIndex={menuIndex} />
-              {likeFoods.length !== index && <HorizontalSpace height={16} />}
-            </Col>
-          );
-        })}
-      </ScrollView>
+      />
       <BtnCTA
         btnStyle="activated"
         onPress={async () => {

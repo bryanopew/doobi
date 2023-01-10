@@ -26,6 +26,12 @@ const ProgressBarNumber = styled.Text`
   text-align: right;
 `;
 
+const Container = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
 const indicatorColorsByTitle: { [key: string]: string } = {
   "칼로리(g)": colors.main,
   "탄수화물(g)": colors.blue,
@@ -33,12 +39,12 @@ const indicatorColorsByTitle: { [key: string]: string } = {
   "지방(g)": colors.orange,
 };
 
-const Container = styled.View`
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
+const NutrUpperBoundByTitle: { [key: string]: number } = {
+  "칼로리(g)": 50,
+  "탄수화물(g)": 15,
+  "단백질(g)": 5,
+  "지방(g)": 5,
+};
 
 /** props:
  * 1. title '칼로리(g)' | '탄수화물(g)' | '단백질(g)' | '지방(g)'
@@ -50,7 +56,10 @@ interface INutrientProgress {
   denominator: number;
 }
 const ProgressBar = ({ title, numerator, denominator }: INutrientProgress) => {
-  const indicatorColor = indicatorColorsByTitle[title];
+  const indicatorColor =
+    numerator > denominator + NutrUpperBoundByTitle[title]
+      ? colors.warning
+      : indicatorColorsByTitle[title];
   return (
     <ProgressBarContainer>
       <ProgressBarTitle>{title}</ProgressBarTitle>
