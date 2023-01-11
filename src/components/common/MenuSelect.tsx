@@ -28,7 +28,7 @@ const SelectContainer = styled.View`
   background-color: ${colors.white};
   border-radius: 3px;
   border-width: 1px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 const Menu = styled.TouchableOpacity`
   flex: 1;

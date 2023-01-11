@@ -5,11 +5,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import colors from "~/styles/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "~/stores/store";
-import {
-  addMenuToCart,
-  deleteMenu,
-  IProduct,
-} from "~/stores/slices/cartSlice";
+import { addMenuToCart, deleteMenu, IProduct } from "~/stores/slices/cartSlice";
 import { Col, HorizontalLine, TextMain } from "~/styles/styledConsts";
 
 const SelectContainer = styled.View`
@@ -20,7 +16,7 @@ const SelectContainer = styled.View`
   background-color: ${colors.white};
   border-radius: 3px;
   border-width: 1px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 const Menu = styled.TouchableOpacity`
   flex: 1;

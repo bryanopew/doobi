@@ -43,7 +43,7 @@ const NutrSummaryContainer = styled.View`
   margin-top: 10px;
   padding: 3px 8px 3px 8px;
   justify-content: space-between;
-  background-color: ${colors.line};
+  background-color: ${colors.bgBox};
 `;
 
 const SellerText = styled(TextMain)`

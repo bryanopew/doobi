@@ -105,10 +105,12 @@ const RightArrow = styled.Image`
 interface INavigateByBtnId {
   [key: string]: (btnId: string, navigate: Function) => void;
 }
+
+// TBD | order -> 원래는 OrderHistory로 바꿔야함! 지금은 Order페이지 테스트
 const navigateByBtnId: INavigateByBtnId = {
   History: (btnId, navigate) => navigate("HistoryNav", { screen: btnId }),
   Likes: (btnId, navigate) => navigate("BottomTabNav", { screen: btnId }),
-  Order: (btnId, navigate) => navigate("HistoryNav", { screen: btnId }),
+  Order: (btnId, navigate) => navigate("OrderNav", { screen: btnId }),
 };
 
 const Mypage = ({ navigation: { navigate } }: NavigationProps) => {

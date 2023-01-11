@@ -35,7 +35,7 @@ const NutrSummaryContainer = styled.View`
   margin-top: 10px;
   padding: 3px 8px 3px 8px;
   justify-content: space-between;
-  background-color: ${colors.line};
+  background-color: ${colors.bgBox};
 `;
 
 const SellerText = styled(TextMain)`
@@ -83,7 +83,7 @@ const DeleteLikeFoodBtn = styled.TouchableOpacity`
   align-items: center;
   border-width: 1px;
   border-radius: 5px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 const DeleteLikeFoodBtnText = styled(TextSub)`
   font-size: 14px;

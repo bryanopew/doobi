@@ -50,7 +50,7 @@ const WeightBox = styled.View`
   width: 210px;
   border-left-width: 1px;
   border-right-width: 1px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
   align-items: center;
   align-self: center;
 `;
@@ -103,7 +103,7 @@ const ImageAddBtn = styled.TouchableOpacity`
   margin-left: 8px;
   border-radius: 10px;
   border-width: 1px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
   justify-content: center;
   align-items: center;
 `;
@@ -238,9 +238,10 @@ const HistoryDetail = ({
         ? await launchCamera({ mediaType: "photo" })
         : await launchImageLibrary({ mediaType: "photo" });
 
+    if (!result.assets || result.assets.length === 0) return;
     // TBD | 지금은 state에 저장하는데 나중에 서버에 저장해야함!
-    setImagePicked((v) => [...v, result?.assets[0]]); // 아 이거 어떻게 없애는거야?
-    await uploadData(result?.assets[0].fileName, result?.assets[0].uri);
+    setImagePicked((v) => [...v, result.assets[0]]); // 아 이거 어떻게 없애는거야?
+    await uploadData(result.assets[0].fileName, result?.assets[0].uri);
     setImageAddAlertShow(false);
   };
 

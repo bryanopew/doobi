@@ -50,13 +50,13 @@ const BtnToggle = styled.TouchableOpacity`
   border-width: 1px;
   border-radius: 4px;
   border-color: ${({ isActivated }: StyledProps) =>
-    isActivated ? colors.main : colors.inActivated};
+    isActivated ? colors.main : colors.inactivated};
 `;
 
 const ToggleText = styled.Text`
   font-size: 16px;
   color: ${({ isActivated }: StyledProps) =>
-    isActivated ? colors.main : colors.inActivated};
+    isActivated ? colors.main : colors.inactivated};
 `;
 
 const InputHeader = styled(InputHeaderText)`

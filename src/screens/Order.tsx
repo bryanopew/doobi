@@ -54,12 +54,15 @@ const UpDownArrow = styled.Image`
 `;
 
 const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
+  // cart information -> 장바구니에서 route에 담아 보내줄 것.
+  // 근데 그냥 장바구니식품 불러와서, 수량은 장바구니 qty쓰면 되는 거 아닌가...?!
+  // TBD | 장바구니 담긴 식품 판매자별로 정리 및 식품가격 배송비 각각 변수에
+
   // redux
   const { cart } = useSelector((state: RootState) => state.cart);
   const { orderInfo, selectedAddressId } = useSelector(
     (state: RootState) => state.order
   );
-  // TBD | 장바구니 담긴 식품 판매자별로 정리 및 식품가격 배송비 각각 변수에
   // react-hook-form
   interface IFormData {
     orderer: string;
@@ -106,7 +109,7 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
           <HeaderSubTitle>외</HeaderSubTitle>
         </Row>
       ),
-      content: <FoodToOrder />,
+      content: <FoodToOrder cartInfo={cart} />,
     },
     {
       title: "주문자",

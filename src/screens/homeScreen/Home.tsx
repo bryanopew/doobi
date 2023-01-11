@@ -49,7 +49,7 @@ const SearchInput = styled.TextInput`
   height: 32px;
   margin-left: 8px;
   border-radius: 4px;
-  background-color: ${colors.line};
+  background-color: ${colors.bgBox};
   padding: 5px 8px 5px 8px;
   font-size: 14px;
   color: ${colors.textSub};

@@ -35,7 +35,7 @@ const Dropdown = (props: IDropdown) => {
         style={{
           borderWidth: 0,
           borderBottomWidth: 1,
-          borderColor: colors.inActivated,
+          borderColor: colors.inactivated,
         }}
         dropDownContainerStyle={{
           position: "relative",
@@ -47,7 +47,7 @@ const Dropdown = (props: IDropdown) => {
           borderTopWidth: 0,
           borderBottomWidth: 1,
           elevation: 3,
-          borderColor: colors.inActivated,
+          borderColor: colors.inactivated,
           zIndex: 6000,
         }}
         selectedItemContainerStyle={{

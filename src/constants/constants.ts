@@ -47,7 +47,7 @@ export const myPageBtns = [
   { title: "몸무게 변경", btnId: "ChangeWeight" },
   { title: "내 기록", btnId: "History" },
   { title: "찜한 식품", btnId: "Likes" },
-  { title: "주문내역", btnId: "Order" },
+  { title: "주문내역 -> 지금은 주문 테스트페이지", btnId: "Order" },
 ];
 
 interface ITimeToMinutes {

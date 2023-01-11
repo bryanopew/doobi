@@ -31,7 +31,7 @@ const BtnLeft = styled.TouchableOpacity`
   border-bottom-left-radius: 10px;
   border-top-width: 1px;
   border-right-width: 0.5px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 const BtnRight = styled.TouchableOpacity`
   flex: 1;
@@ -41,7 +41,7 @@ const BtnRight = styled.TouchableOpacity`
   border-bottom-right-radius: 10px;
   border-top-width: 1px;
   border-left-width: 0.5px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 const ConfirmBtnText = styled(TextMain)`
   font-size: 16px;

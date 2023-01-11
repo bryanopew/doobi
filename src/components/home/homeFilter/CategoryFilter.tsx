@@ -29,7 +29,7 @@ const CategoryListContainer = styled.View`
   align-items: center;
   padding: 15px;
   border-top-width: 0.5px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 
 const CategoryListText = styled.Text`
@@ -49,12 +49,12 @@ const FilterButtonContainer = styled.View`
 const StyledButton = styled.TouchableOpacity`
   align-items: center;
   flex: 1;
-  height: 50px
+  height: 50px;
   padding: 15px;
   border-width: 1px;
   border-radius: 4px;
   margin: 5px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 const ButtonText = styled.Text`
   color: ${colors.textSub};

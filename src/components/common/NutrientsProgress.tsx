@@ -69,7 +69,7 @@ const ProgressBar = ({ title, numerator, denominator }: INutrientProgress) => {
         width={null}
         height={4}
         color={indicatorColor}
-        unfilledColor={colors.line}
+        unfilledColor={colors.bgBox}
         borderWidth={0}
       />
       <ProgressBarNumber>{`${numerator}/${denominator}`}</ProgressBarNumber>

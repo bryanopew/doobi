@@ -9,6 +9,7 @@ export interface StyledProps {
   width?: number;
   height?: number;
   backgroundColor?: string;
+  lineColor?: string;
 }
 
 export const Container = styled.View`
@@ -31,7 +32,7 @@ export const UserInfoTextInput = styled.TextInput`
   padding-bottom: 10px;
   border-bottom-width: 1px;
   border-color: ${({ isActivated }: StyledProps) =>
-    isActivated ? colors.main : colors.inActivated};
+    isActivated ? colors.main : colors.inactivated};
 `;
 
 export const InputHeader = styled(InputHeaderText)`
@@ -102,7 +103,7 @@ export const BtnCTA = styled.TouchableOpacity`
     btnStyle == "activated"
       ? `${colors.main}`
       : btnStyle == "inactivated"
-      ? `${colors.inActivated}`
+      ? `${colors.inactivated}`
       : btnStyle == "border"
       ? `${colors.white}`
       : btnStyle == "kakao"
@@ -115,7 +116,7 @@ export const BtnCTA = styled.TouchableOpacity`
     btnStyle == "border" || btnStyle == "borderActivated" ? "1px" : "0px"};
   border-color: ${({ btnStyle }: StyledProps) =>
     btnStyle == "border"
-      ? colors.inActivated
+      ? colors.inactivated
       : btnStyle == "borderActivated"
       ? colors.main
       : colors.white};
@@ -136,9 +137,9 @@ export const BtnSmall = styled.TouchableOpacity`
   align-items: center;
   border-radius: 5px;
   background-color: ${({ isActivated }: StyledProps) =>
-    isActivated ? colors.inActivated : colors.white};
+    isActivated ? colors.inactivated : colors.white};
   border-width: 1px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 
 export const BtnText = styled.Text`
@@ -156,12 +157,13 @@ export const BtnSmallText = styled.Text`
 export const VerticalLine = styled.View`
   height: ${({ height }: StyledProps) => (height ? `${height}px` : `100%`)};
   width: 1px;
-  background-color: ${colors.inActivated};
+  background-color: ${colors.inactivated};
 `;
 export const HorizontalLine = styled.View`
   height: 1px;
   width: ${({ width }: StyledProps) => (width ? `${width}px` : `100%`)};
-  background-color: ${colors.inActivated};
+  background-color: ${({ lineColor }) =>
+    lineColor ? lineColor : colors.lineLight};
 `;
 
 /** props1. height  */

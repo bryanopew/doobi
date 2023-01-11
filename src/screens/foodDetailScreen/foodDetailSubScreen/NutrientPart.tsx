@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   borderStyle: {
     borderWidth: 1,
-    borderColor: colors.inActivated,
+    borderColor: colors.inactivated,
   },
 });
 const NutrientPart = () => {
