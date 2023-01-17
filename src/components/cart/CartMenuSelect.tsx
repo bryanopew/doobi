@@ -57,7 +57,7 @@ const DeleteImg = styled.Image`
 
 const menuToDropdownValues = (cart: Array<Array<IProduct>>) => {
   const dropdownCategory = cart.map((v, index) => {
-    return { label: `식단 ${index + 1}`, index: index };
+    return { label: `끼니 ${index + 1}`, index: index };
   });
   return dropdownCategory;
 };
@@ -106,17 +106,17 @@ const CartMenuSelect = ({ setOpen }: IMenuSelect) => {
       <Menu
         onPress={() => {
           if (cart[menuIndex].length === 0) {
-            Alert.alert("현재 식단에 식품을 추가하고 이용해보세요");
+            Alert.alert("현재 끼니에 식품을 추가하고 이용해보세요");
             return;
           }
           if (cart.length > 2) {
-            Alert.alert("식단은 3개까지만 추가 가능합니다");
+            Alert.alert("끼니는 3개까지만 추가 가능합니다");
             return;
           }
           dispatch(addMenuToCart());
         }}
       >
-        <MenuText>식단 추가하기</MenuText>
+        <MenuText>끼니 추가하기</MenuText>
       </Menu>
     </SelectContainer>
   );

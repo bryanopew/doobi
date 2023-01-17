@@ -18,6 +18,10 @@ export const Container = styled.View`
   background-color: ${colors.white};
 `;
 
+export const AlertContentContainer = styled.View`
+  padding: 28px 16px 28px 16px;
+`;
+
 export const InputHeaderText = styled.Text`
   font-size: 14px;
   font-weight: normal;

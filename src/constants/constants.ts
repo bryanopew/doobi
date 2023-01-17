@@ -47,7 +47,8 @@ export const myPageBtns = [
   { title: "몸무게 변경", btnId: "ChangeWeight" },
   { title: "내 기록", btnId: "History" },
   { title: "찜한 식품", btnId: "Likes" },
-  { title: "주문내역 -> 지금은 주문 테스트페이지", btnId: "Order" },
+  { title: "주문 테스트페이지 -> 삭제예정", btnId: "Order" },
+  { title: "주문내역", btnId: "PaymentHistory" },
 ];
 
 interface ITimeToMinutes {
@@ -208,6 +209,13 @@ export const validationRules: IValidationRules = {
     },
   },
 };
+
+// bootpay consts
+export const bpJavascriptKey = `63c5e494755e27001c5fd612`;
+export const bpAndroidKey = `63c5e494755e27001c5fd613`;
+export const bpIosKey = `63c5e494755e27001c5fd614`;
+export const bpRestApiKey = `63c5e494755e27001c5fd615`;
+export const bpPrivateKey = `CMXPjT5NtCp3oio8BzTaUrxiMZhG8r4pq3tBTqUmmiY=`;
 
 // type
 // TBD | react navigation ts 적용 아직 모름

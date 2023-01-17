@@ -5,8 +5,9 @@ import DropDownPicker from "react-native-dropdown-picker";
 import colors from "~/styles/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "~/stores/store";
-import { addMenuToCart, deleteMenu, IProduct } from "~/stores/slices/cartSlice";
+import { addMenuToCart, deleteMenu } from "~/stores/slices/cartSlice";
 import { Col, HorizontalLine, TextMain } from "~/styles/styledConsts";
+import { IProduct } from "~/constants/constants";
 
 const SelectContainer = styled.View`
   position: absolute;
@@ -45,7 +46,7 @@ const DeleteImg = styled.Image`
 
 const menuToDropdownValues = (cart: Array<Array<IProduct>>) => {
   const dropdownCategory = cart.map((v, index) => {
-    return { label: `식단 ${index + 1}`, index: index };
+    return { label: `끼니 ${index + 1}`, index: index };
   });
   return dropdownCategory;
 };
@@ -102,13 +103,13 @@ const MenuSelect = ({
       <Menu
         onPress={() => {
           if (cart.length > 2) {
-            Alert.alert("식단은 3개까지만 추가 가능합니다");
+            Alert.alert("끼니는 3개까지만 추가 가능합니다");
             return;
           }
           dispatch(addMenuToCart());
         }}
       >
-        <MenuText>식단 추가하기</MenuText>
+        <MenuText>끼니 추가하기</MenuText>
       </Menu>
     </SelectContainer>
   );

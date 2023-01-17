@@ -47,7 +47,7 @@ const MenuFilterScreenStack = (props) => {
     } else if (index === 2) {
       return "가격";
     } else if (index === 3) {
-      return "식단구성";
+      return "끼니구성";
     }
   };
 

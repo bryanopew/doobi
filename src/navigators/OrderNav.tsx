@@ -13,6 +13,7 @@ const BackArrow = styled.Image`
 `;
 
 const Stack = createNativeStackNavigator();
+
 const OrderNav = ({ navigation: { navigate } }: NavigationProps) => {
   return (
     <Stack.Navigator>

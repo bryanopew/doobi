@@ -109,7 +109,7 @@ const Home = ({ navigation }) => {
     { id: 1, text: "카테고리" },
     { id: 2, text: "영양성분" },
     { id: 3, text: "가격" },
-    { id: 4, text: "식단구성" },
+    { id: 4, text: "끼니구성" },
   ];
   useEffect(() => {
     const getInitialFoods = async () => {

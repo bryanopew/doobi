@@ -86,7 +86,7 @@ const CardMenuSelect = () => {
   const dispatch = useDispatch();
   const menuInfo = (arg) =>
     arg.map((el, index) => {
-      return `식단 ${index + 1}`;
+      return `끼니 ${index + 1}`;
     });
   let cardMenuArray = menuInfo(cart).map((el) => {
     return el;

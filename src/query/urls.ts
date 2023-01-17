@@ -12,7 +12,7 @@ export const GET_BASE_LINE =
   //기본 정보 조회
   `${BASE_URL}/api/member/baseline/get-base-line`;
 export const CREATE_DIET =
-  //식단정보생성
+  //끼니정보생성
   `${BASE_URL}/api/member/diet/create-diet`;
-export const LIST_DIET = `${BASE_URL}/api/member/diet/list-diet`; //식단 정보 목록 조회
+export const LIST_DIET = `${BASE_URL}/api/member/diet/list-diet`; //끼니 정보 목록 조회
 export const PRODUCT_LIST = `${BASE_URL}/api/member/product/list-product`;

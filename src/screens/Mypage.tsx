@@ -111,6 +111,8 @@ const navigateByBtnId: INavigateByBtnId = {
   History: (btnId, navigate) => navigate("HistoryNav", { screen: btnId }),
   Likes: (btnId, navigate) => navigate("BottomTabNav", { screen: btnId }),
   Order: (btnId, navigate) => navigate("OrderNav", { screen: btnId }),
+  PaymentHistory: (btnId, navigate) =>
+    navigate("PaymentHistoryNav", { screen: btnId }),
 };
 
 const Mypage = ({ navigation: { navigate } }: NavigationProps) => {

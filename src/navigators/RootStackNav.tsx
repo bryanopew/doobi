@@ -6,6 +6,7 @@ import HistoryNav from "./HistoryNav";
 import Login from "~/screens/Login";
 import FoodDetail from "~/screens/foodDetailScreen/FoodDetail";
 import OrderNav from "./OrderNav";
+import PaymentHistoryNav from "./PaymentHistoryNav";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +23,7 @@ const RootStackNav = () => {
       <Stack.Screen name="FoodDetail" component={FoodDetail} />
       <Stack.Screen name="OrderNav" component={OrderNav} />
       <Stack.Screen name="HistoryNav" component={HistoryNav} />
-      {/* <Stack.Screen name="PaymentHistroyNav" component={PaymentHistroyNav} /> */}
+      <Stack.Screen name="PaymentHistoryNav" component={PaymentHistoryNav} />
     </Stack.Navigator>
   );
 };

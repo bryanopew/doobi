@@ -9,6 +9,7 @@ import {
   validationRules,
 } from "~/constants/constants";
 import {
+  AlertContentContainer,
   BtnCTA,
   BtnText,
   Container,
@@ -30,6 +31,7 @@ import {
   setSelectedAddressId,
   updateAddress,
 } from "~/stores/slices/orderSlice";
+import DAlert from "~/components/common/DAlert";
 
 const PostalCode = styled(TextSub)`
   font-size: 16px;
@@ -69,12 +71,24 @@ const ModalBackGround = styled.View`
   background-color: #000000a6;
 `;
 
+const AlertText = styled(TextMain)`
+  font-size: 16px;
+  align-self: center;
+`;
+
+const renderDeleteAlertContent = () => (
+  <AlertContentContainer>
+    <AlertText>해당 배송지를</AlertText>
+    <AlertText>삭제하시겠어요?</AlertText>
+  </AlertContentContainer>
+);
+
 const AddressEdit = ({
   navigation: { navigate, setOptions },
   route,
 }: NavigationProps) => {
   const currentAddressId =
-    route.params.currentAddressId ?? route.params.currentAddressId;
+    route.params?.currentAddressId ?? route.params?.currentAddressId;
   const isCreate = currentAddressId === undefined ? true : false;
 
   // redux
@@ -84,7 +98,8 @@ const AddressEdit = ({
   } = useSelector((state: RootState) => state.order);
 
   const [showDetails, setShowDetails] = useState(!isCreate);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [postModalVisible, setPostModalVisible] = useState(false);
+  const [addressDeleteAlertShow, setAddressDeleteAlertShow] = useState(false);
   const [postalCode, setPostalCode] = useState("");
   const [addressBase, setAddressBase] = useState("");
 
@@ -140,17 +155,7 @@ const AddressEdit = ({
               <PostalCode>우편번호: {postalCode}</PostalCode>
               <AddressDeleteBtn
                 onPress={() => {
-                  Alert.alert("해당 주소를 삭제합니다");
-                  dispatch(deleteAddress(currentAddressId));
-                  dispatch(
-                    setSelectedAddressId(
-                      currentAddressId === 0 ? 0 : currentAddressId - 1
-                    )
-                  );
-                  navigate("HistoryNav", {
-                    screen: "Order",
-                    params: { from: "AddressEdit" },
-                  });
+                  setAddressDeleteAlertShow(true);
                 }}
               >
                 <AddressDeleteIcon
@@ -173,7 +178,7 @@ const AddressEdit = ({
       <AddressEditBtn
         btnStyle="border"
         onPress={() => {
-          setModalVisible(true);
+          setPostModalVisible(true);
         }}
       >
         <BtnText style={{ color: colors.textSub, fontSize: 16 }}>
@@ -196,10 +201,7 @@ const AddressEdit = ({
               );
               console.log("onPress: address.length: ", address.length);
               dispatch(setSelectedAddressId(address.length));
-              navigate("HistoryNav", {
-                screen: "Order",
-                params: { from: "AddressEdit" },
-              });
+              navigate("Order");
             } else {
               Alert.alert("정보를 모두 입력해주세요");
             }
@@ -215,10 +217,7 @@ const AddressEdit = ({
                 currentAddressId,
               })
             );
-            navigate("HistoryNav", {
-              screen: "Order",
-              params: { from: "AddressEdit" },
-            });
+            navigate("Order");
           }
         }}
       >
@@ -227,9 +226,9 @@ const AddressEdit = ({
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={postModalVisible}
         onRequestClose={() => {
-          setModalVisible(!modalVisible);
+          setPostModalVisible(!postModalVisible);
         }}
       >
         <ModalBackGround>
@@ -240,12 +239,29 @@ const AddressEdit = ({
               setAddressBase(data.roadAddress);
               setPostalCode(String(data.zonecode));
               setShowDetails(true);
-              setModalVisible(false);
+              setPostModalVisible(false);
             }}
             onError={() => console.log("오류")}
           />
         </ModalBackGround>
       </Modal>
+      <DAlert
+        alertShow={addressDeleteAlertShow}
+        onCancel={() => {
+          setAddressDeleteAlertShow(false);
+        }}
+        onConfirm={() => {
+          dispatch(deleteAddress(currentAddressId));
+          dispatch(
+            setSelectedAddressId(
+              currentAddressId === 0 ? 0 : currentAddressId - 1
+            )
+          );
+          navigate("Order");
+        }}
+        renderContent={renderDeleteAlertContent}
+        confirmLabel={"삭제"}
+      />
     </Container>
   );
 };

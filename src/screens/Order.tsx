@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components/native";
 import {
   BtnBottomCTA,
@@ -96,7 +96,7 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
   const receiverValue = useWatch({ control, name: "receiver" });
   const receiverContactValue = useWatch({ control, name: "receiverContact" });
   const paymentMethodValue = useWatch({ control, name: "paymentMethod" });
-
+  console.log("Order: route:", route);
   // accordion
   // activeSections[0] == 1 : 두비가 알아서 / 탄단지 비율 / 영양성분 직접 입력
   const [activeSections, setActiveSections] = useState<number[]>([]);
@@ -182,11 +182,7 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
   // navigation 적용할 것 -> InputNav.tsx: AddressEdit Screen | AddressEdit.tsx: delete, confirm
   useEffect(() => {
     handleSubmit(() => {})();
-    route.params?.from &&
-      route.params?.from === "AddressEdit" &&
-      setActiveSections([2]);
   }, []);
-  console.log("errors: ", errors);
   return (
     <Container>
       <ScrollView
