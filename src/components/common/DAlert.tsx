@@ -9,7 +9,7 @@ const ModalBackGround = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #000000a6;
+  background-color: ${colors.backgroundModal};
 `;
 
 const PopUpContainer = styled.View`

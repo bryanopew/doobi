@@ -211,11 +211,7 @@ export const validationRules: IValidationRules = {
 };
 
 // bootpay consts
-export const bpJavascriptKey = `63c5e494755e27001c5fd612`;
-export const bpAndroidKey = `63c5e494755e27001c5fd613`;
-export const bpIosKey = `63c5e494755e27001c5fd614`;
-export const bpRestApiKey = `63c5e494755e27001c5fd615`;
-export const bpPrivateKey = `CMXPjT5NtCp3oio8BzTaUrxiMZhG8r4pq3tBTqUmmiY=`;
+export const kakaoAppAdminKey = `f1fddabbeb50a2054c9b82ced4017b11`;
 
 // type
 // TBD | react navigation ts 적용 아직 모름

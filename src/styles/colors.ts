@@ -16,4 +16,5 @@ export default {
   lineLight: "#E5E5E5",
   modalBg: "#000000A6",
   kakaoColor: "#ffe812",
+  backgroundModal: "#000000a6",
 };
