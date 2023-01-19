@@ -9,17 +9,13 @@ import Cart from "~/screens/Cart";
 import colors from "~/styles/colors";
 
 import HomeStack from "./home-stack";
+import BackArrow from "~/components/common/BackArrow";
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabIcon = styled.Image`
   width: 36px;
   height: 36px;
-`;
-const BackArrow = styled.Image`
-  margin-left: 16px;
-  width: 24px;
-  height: 24px;
 `;
 
 const BottomTabNav = () => {
@@ -85,9 +81,7 @@ const BottomTabNav = () => {
             fontWeight: "bold",
             color: colors.textMain,
           },
-          headerLeft: () => (
-            <BackArrow source={require(`~/assets/icons/24_back.png`)} />
-          ),
+          headerLeft: () => <BackArrow />,
         }}
       />
       <Tab.Screen
@@ -114,9 +108,7 @@ const BottomTabNav = () => {
             fontWeight: "bold",
             color: colors.textMain,
           },
-          headerLeft: () => (
-            <BackArrow source={require(`~/assets/icons/24_back.png`)} />
-          ),
+          headerLeft: () => <BackArrow />,
         }}
       />
     </Tab.Navigator>

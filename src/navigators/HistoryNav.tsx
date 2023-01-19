@@ -8,11 +8,7 @@ import colors from "~/styles/colors";
 import { NavigationProps } from "~/constants/constants";
 import HistoryDetail from "~/screens/HistoryDetail";
 import { TextMain } from "~/styles/styledConsts";
-
-const BackArrow = styled.Image`
-  width: 24px;
-  height: 24px;
-`;
+import BackArrow from "~/components/common/BackArrow";
 
 const Stack = createNativeStackNavigator();
 const HistoryNav = ({ navigation: { navigate, goBack } }: NavigationProps) => {
@@ -38,7 +34,7 @@ const HistoryNav = ({ navigation: { navigate, goBack } }: NavigationProps) => {
             <TouchableOpacity
               onPress={() => navigate("BottomTabNav", { screen: "Mypage" })}
             >
-              <BackArrow source={require(`~/assets/icons/24_back.png`)} />
+              <BackArrow />
             </TouchableOpacity>
           ),
         }}
@@ -57,9 +53,9 @@ const HistoryNav = ({ navigation: { navigate, goBack } }: NavigationProps) => {
           },
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => navigate("HistoryNav", { screen: "History" })}
+              onPress={() => navigate("BottomTabNav", { screen: "Mypage" })}
             >
-              <BackArrow source={require(`~/assets/icons/24_back.png`)} />
+              <BackArrow />
             </TouchableOpacity>
           ),
         }}

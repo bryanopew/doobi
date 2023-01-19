@@ -1,11 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
+import { Container } from "~/styles/styledConsts";
 
 const PaymentHistory = () => {
   return (
-    <View>
+    <Container>
       <Text>PaymentHistory</Text>
-    </View>
+    </Container>
   );
 };
 
