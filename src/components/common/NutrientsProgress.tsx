@@ -27,6 +27,7 @@ const ProgressBarNumber = styled.Text`
 `;
 
 const Container = styled.View`
+  background-color: ${colors.white};
   width: 100%;
   flex-direction: row;
   justify-content: space-between;

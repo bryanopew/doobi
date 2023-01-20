@@ -53,7 +53,7 @@ const HistoryNav = ({ navigation: { navigate, goBack } }: NavigationProps) => {
           },
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => navigate("BottomTabNav", { screen: "Mypage" })}
+              onPress={() => navigate("HistoryNav", { screen: "History" })}
             >
               <BackArrow />
             </TouchableOpacity>
