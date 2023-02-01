@@ -137,19 +137,19 @@ const AutoDietFilter = () => {
     <SafeAreaView style={styles.wrapper}>
       <TextContainer>
         <HeaderText>
-          현재 식단 기준으로 목표섭취량을 초과하지 않는 무작위 5개 식품들만
+          현재 끼니 기준으로 목표섭취량을 초과하지 않는 무작위 5개 식품들만
           보여줍니다.
         </HeaderText>
         <CreateDietButton>
           <RowContainer>
             <EachCheckBoxAndroid />
-            <CreateDietText>식단구성 쉽게하기</CreateDietText>
+            <CreateDietText>끼니구성 쉽게하기</CreateDietText>
           </RowContainer>
         </CreateDietButton>
       </TextContainer>
       <FilterButtonContainer>
         <StyledButton>
-          <ButtonText>식단구성 초기화</ButtonText>
+          <ButtonText>끼니구성 초기화</ButtonText>
         </StyledButton>
         <StyledButton>
           <ButtonText>확인</ButtonText>

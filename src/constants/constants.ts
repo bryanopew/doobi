@@ -47,7 +47,8 @@ export const myPageBtns = [
   { title: "몸무게 변경", btnId: "ChangeWeight" },
   { title: "내 기록", btnId: "History" },
   { title: "찜한 식품", btnId: "Likes" },
-  { title: "주문내역", btnId: "Order" },
+  { title: "주문 테스트페이지 -> 삭제예정", btnId: "Order" },
+  { title: "주문내역", btnId: "PaymentHistory" },
 ];
 
 interface ITimeToMinutes {
@@ -208,6 +209,9 @@ export const validationRules: IValidationRules = {
     },
   },
 };
+
+// bootpay consts
+export const kakaoAppAdminKey = `f1fddabbeb50a2054c9b82ced4017b11`;
 
 // type
 // TBD | react navigation ts 적용 아직 모름

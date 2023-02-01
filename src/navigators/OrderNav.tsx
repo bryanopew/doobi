@@ -6,13 +6,10 @@ import colors from "~/styles/colors";
 import styled from "styled-components/native";
 import { NavigationProps } from "~/constants/constants";
 import AddressEdit from "~/screens/AddressEdit";
-
-const BackArrow = styled.Image`
-  width: 24px;
-  height: 24px;
-`;
+import BackArrow from "~/components/common/BackArrow";
 
 const Stack = createNativeStackNavigator();
+
 const OrderNav = ({ navigation: { navigate } }: NavigationProps) => {
   return (
     <Stack.Navigator>
@@ -32,7 +29,7 @@ const OrderNav = ({ navigation: { navigate } }: NavigationProps) => {
             <TouchableOpacity
               onPress={() => navigate("BottomTabNav", { screen: "Cart" })}
             >
-              <BackArrow source={require(`~/assets/icons/24_back.png`)} />
+              <BackArrow />
             </TouchableOpacity>
           ),
         }}
@@ -52,7 +49,7 @@ const OrderNav = ({ navigation: { navigate } }: NavigationProps) => {
                 })
               }
             >
-              <BackArrow source={require(`~/assets/icons/24_back.png`)} />
+              <BackArrow />
             </TouchableOpacity>
           ),
         }}

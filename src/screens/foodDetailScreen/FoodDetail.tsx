@@ -53,7 +53,7 @@ const DetailMenu = styled.TouchableOpacity`
   margin-bottom: 10px;
   border: 1px;
   border-radius: 5px;
-  border-color: ${colors.inActivated}
+  border-color: ${colors.inactivated}
   align-items: center;
   justify-content: center;
 `;
@@ -65,8 +65,8 @@ const ActivateDetailMenu = styled.TouchableOpacity`
   margin-bottom: 10px;
   border: 1px;
   border-radius: 5px;
-  border-color: ${colors.inActivated}
-  background-color: ${colors.inActivated}
+  border-color: ${colors.inactivated}
+  background-color: ${colors.inactivated}
   align-items: center;
   justify-content: center;
 `;

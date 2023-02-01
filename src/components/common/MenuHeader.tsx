@@ -27,7 +27,7 @@ const MenuHeader = ({ menuSelectOpen, setMenuSelectOpen }: IMenuHeader) => {
   const { menuIndex } = useSelector((state: RootState) => state.cart);
   return (
     <Header onPress={() => setMenuSelectOpen((v) => !v)}>
-      <HeaderText>{`식단${menuIndex + 1}`}</HeaderText>
+      <HeaderText>{`끼니${menuIndex + 1}`}</HeaderText>
       {menuSelectOpen ? (
         <Arrow source={require(`~/assets/icons/24_dropdown_up.png`)} />
       ) : (

@@ -39,7 +39,7 @@ const AccordionHeader = styled.View`
   justify-content: center;
   border-width: 1px;
   border-color: ${({ isActivated }: StyledProps) =>
-    isActivated ? colors.main : colors.inActivated};
+    isActivated ? colors.main : colors.inactivated};
 `;
 
 const AccordionHeaderTitle = styled.Text`

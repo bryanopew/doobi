@@ -49,7 +49,7 @@ const SearchInput = styled.TextInput`
   height: 32px;
   margin-left: 8px;
   border-radius: 4px;
-  background-color: ${colors.line};
+  background-color: ${colors.bgBox};
   padding: 5px 8px 5px 8px;
   font-size: 14px;
   color: ${colors.textSub};
@@ -109,7 +109,7 @@ const Home = ({ navigation }) => {
     { id: 1, text: "카테고리" },
     { id: 2, text: "영양성분" },
     { id: 3, text: "가격" },
-    { id: 4, text: "식단구성" },
+    { id: 4, text: "끼니구성" },
   ];
   useEffect(() => {
     const getInitialFoods = async () => {

@@ -42,21 +42,21 @@ const Row = styled.View`
 const PickMenu = styled.TouchableOpacity`
   border: 1px;
   border-radius: 5px;
-  border-color: ${colors.white}
+  border-color: ${colors.white};
   width: 74px;
   height: 32px;
   align-items: center;
-  background-color: ${colors.white}
+  background-color: ${colors.white};
   margin-right: 10px;
 `;
 const PickMenuActivated = styled.TouchableOpacity`
   border: 1px;
   border-radius: 5px;
-  border-color: ${colors.inActivated}
+  border-color: ${colors.inactivated};
   width: 74px;
   height: 32px;
   align-items: center;
-  background-color: ${colors.inActivated}
+  background-color: ${colors.inactivated};
   margin-right: 10px;
 `;
 
@@ -86,7 +86,7 @@ const CardMenuSelect = () => {
   const dispatch = useDispatch();
   const menuInfo = (arg) =>
     arg.map((el, index) => {
-      return `식단 ${index + 1}`;
+      return `끼니 ${index + 1}`;
     });
   let cardMenuArray = menuInfo(cart).map((el) => {
     return el;

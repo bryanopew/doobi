@@ -25,7 +25,7 @@ const CategoryListContainer = styled.View`
   flex-direction: column;
   align-items: center;
   border-top-width: 0.5px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
   padding: 10px;
 `;
 
@@ -47,7 +47,7 @@ border-width: 1px;
 border-radius: 4px;
 margin: 5px;
 margin-top: 20px;
-border-color: ${colors.inActivated};
+border-color: ${colors.inactivated};
 `;
 const ButtonText = styled.Text`
   color: ${colors.textSub};

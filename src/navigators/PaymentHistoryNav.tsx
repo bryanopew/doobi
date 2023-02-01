@@ -1,35 +1,29 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import styled from "styled-components/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import History from "~/screens/History";
-import Order from "~/screens/Order";
-import colors from "~/styles/colors";
-import { NavigationProps } from "~/constants/constants";
-import HistoryDetail from "~/screens/HistoryDetail";
-import { TextMain } from "~/styles/styledConsts";
+import PaymentDetail from "~/screens/PaymentDetail";
+import PaymentHistory from "~/screens/PaymentHistory";
 import BackArrow from "~/components/common/BackArrow";
+import { NavigationProps } from "~/constants/constants";
+import colors from "~/styles/colors";
 
 const Stack = createNativeStackNavigator();
-const HistoryNav = ({ navigation: { navigate, goBack } }: NavigationProps) => {
+
+const PaymentHistoryNav = ({ navigation: { navigate } }: NavigationProps) => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShadowVisible: false,
-      }}
-    >
+    <Stack.Navigator>
       <Stack.Screen
-        name="History"
-        component={History}
+        name="PaymentHistory"
+        component={PaymentHistory}
         options={{
-          headerShown: true,
-          headerTitle: "내 기록",
           headerTitleAlign: "center",
+          headerTitle: "구매내역",
           headerTitleStyle: {
             fontSize: 18,
             fontWeight: "bold",
             color: colors.textMain,
           },
+          headerShadowVisible: false,
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigate("BottomTabNav", { screen: "Mypage" })}
@@ -40,21 +34,19 @@ const HistoryNav = ({ navigation: { navigate, goBack } }: NavigationProps) => {
         }}
       />
       <Stack.Screen
-        name="HistoryDetail"
-        component={HistoryDetail}
+        name="PaymentDetail"
+        component={PaymentDetail}
         options={{
-          headerShown: true,
-          headerTitle: "",
           headerTitleAlign: "center",
+          headerTitle: "",
           headerTitleStyle: {
             fontSize: 18,
             fontWeight: "bold",
             color: colors.textMain,
           },
+          headerShadowVisible: false,
           headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigate("HistoryNav", { screen: "History" })}
-            >
+            <TouchableOpacity onPress={() => navigate("PaymentHistory")}>
               <BackArrow />
             </TouchableOpacity>
           ),
@@ -64,4 +56,4 @@ const HistoryNav = ({ navigation: { navigate, goBack } }: NavigationProps) => {
   );
 };
 
-export default HistoryNav;
+export default PaymentHistoryNav;

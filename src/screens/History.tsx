@@ -23,7 +23,7 @@ const HistoryBox = styled.TouchableOpacity`
   width: ${SCREENWIDTH / 3}px;
   height: ${SCREENWIDTH / 3}px;
   border-width: 1px;
-  border-color: ${colors.inActivated};
+  border-color: ${colors.inactivated};
 `;
 const HistoryImage = styled.Image`
   flex: 1;

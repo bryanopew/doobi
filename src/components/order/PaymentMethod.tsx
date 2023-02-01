@@ -14,7 +14,7 @@ import { IFormField, validationRules } from "~/constants/constants";
 const KakaoPayBtn = styled(BtnCTA)`
   height: 48px;
   border-color: ${({ isActivated }) =>
-    isActivated ? `${colors.kakaoColor}` : `${colors.inActivated}`};
+    isActivated ? `${colors.kakaoColor}` : `${colors.inactivated}`};
 `;
 const KakaoPayBtnText = styled(TextMain)`
   font-size: 16px;

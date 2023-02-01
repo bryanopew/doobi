@@ -189,11 +189,8 @@ const Address = ({
             </SelectContainer>
             <EditBtn
               onPress={() => {
-                navigation.navigate("InputNav", {
-                  screen: "AddressEdit",
-                  params: {
-                    currentAddressId: index,
-                  },
+                navigation.navigate("AddressEdit", {
+                  currentAddressId: index,
                 });
               }}
             >
@@ -225,10 +222,7 @@ const Address = ({
               receiverContact: receiverContactValue,
             })
           );
-          navigation.navigate("InputNav", {
-            screen: "AddressEdit",
-            params: {},
-          });
+          navigation.navigate("AddressEdit");
         }}
       >
         <Row>

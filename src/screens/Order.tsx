@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components/native";
 import {
   BtnBottomCTA,
@@ -19,7 +19,13 @@ import FoodToOrder from "~/components/order/FoodToOrder";
 import Orderer from "~/components/order/Orderer";
 import Address from "~/components/order/Address";
 import PaymentMethod from "~/components/order/PaymentMethod";
-import { NavigationProps, SCREENWIDTH } from "~/constants/constants";
+import {
+  kakaoAppAdminKey,
+  NavigationProps,
+  SCREENWIDTH,
+} from "~/constants/constants";
+import axios from "axios";
+import PaymentWebView from "~/components/order/PaymentWebView";
 
 const Container = styled.View`
   flex: 1;
@@ -54,12 +60,15 @@ const UpDownArrow = styled.Image`
 `;
 
 const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
+  // cart information -> 장바구니에서 route에 담아 보내줄 것.
+  // 근데 그냥 장바구니식품 불러와서, 수량은 장바구니 qty쓰면 되는 거 아닌가...?!
+  // TBD | 장바구니 담긴 식품 판매자별로 정리 및 식품가격 배송비 각각 변수에
+
   // redux
   const { cart } = useSelector((state: RootState) => state.cart);
   const { orderInfo, selectedAddressId } = useSelector(
     (state: RootState) => state.order
   );
-  // TBD | 장바구니 담긴 식품 판매자별로 정리 및 식품가격 배송비 각각 변수에
   // react-hook-form
   interface IFormData {
     orderer: string;
@@ -93,7 +102,7 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
   const receiverValue = useWatch({ control, name: "receiver" });
   const receiverContactValue = useWatch({ control, name: "receiverContact" });
   const paymentMethodValue = useWatch({ control, name: "paymentMethod" });
-
+  console.log("Order: route:", route);
   // accordion
   // activeSections[0] == 1 : 두비가 알아서 / 탄단지 비율 / 영양성분 직접 입력
   const [activeSections, setActiveSections] = useState<number[]>([]);
@@ -106,7 +115,7 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
           <HeaderSubTitle>외</HeaderSubTitle>
         </Row>
       ),
-      content: <FoodToOrder />,
+      content: <FoodToOrder cartInfo={cart} />,
     },
     {
       title: "주문자",
@@ -174,16 +183,46 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
   const updateSections = (actives: Array<number>) => {
     setActiveSections(actives);
   };
-
+  const [paymentUrl, setPaymentUrl] = useState("");
+  const [isPaymentModalVisible, setIsPaymentModalVisible] = useState(false);
+  const testKakaoPay = async () => {
+    const kakaoPayConfig = {
+      headers: {
+        Authorization: `KakaoAK ${kakaoAppAdminKey}`,
+        "Content-type": `application/x-www-form-urlencoded;charset=utf-8`,
+      },
+      params: {
+        cid: "TC0ONETIME",
+        partner_order_id: "partner_order_id",
+        partner_user_id: "partner_user_id",
+        item_name: "테스트",
+        quantity: 1,
+        total_amount: 2200,
+        vat_amount: 200,
+        tax_free_amount: 0,
+        approval_url: "http://localhost:8081/",
+        cancel_url: "http://localhost:8081/",
+        fail_url: "http://localhost:8081/",
+      },
+    };
+    try {
+      const res = await axios.post(
+        `https://kapi.kakao.com/v1/payment/ready`,
+        null,
+        kakaoPayConfig
+      );
+      console.log("testKakaoPay: res: ", res.data.next_redirect_mobile_url);
+      setPaymentUrl(res.data.next_redirect_mobile_url);
+      setIsPaymentModalVisible(true);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   // AddressEdit스크린에서 다시 Orders스크린 온 경우 active section설정
   // navigation 적용할 것 -> InputNav.tsx: AddressEdit Screen | AddressEdit.tsx: delete, confirm
   useEffect(() => {
     handleSubmit(() => {})();
-    route.params?.from &&
-      route.params?.from === "AddressEdit" &&
-      setActiveSections([2]);
   }, []);
-  console.log("errors: ", errors);
   return (
     <Container>
       <ScrollView
@@ -210,6 +249,7 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
             ? "activated"
             : "inactivated"
         }
+        onPress={testKakaoPay}
       >
         <BtnText>
           {Object.keys(errors).length === 0 &&
@@ -218,6 +258,11 @@ const Order = ({ navigation: { navigate }, route }: NavigationProps) => {
             : `정보를 모두 입력해주세요`}
         </BtnText>
       </BtnBottomCTA>
+      <PaymentWebView
+        uri={paymentUrl}
+        isPaymentModalVisible={isPaymentModalVisible}
+        setIsPaymentModalVisible={setIsPaymentModalVisible}
+      />
     </Container>
   );
 };

@@ -27,6 +27,7 @@ const ProgressBarNumber = styled.Text`
 `;
 
 const Container = styled.View`
+  background-color: ${colors.white};
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -69,7 +70,7 @@ const ProgressBar = ({ title, numerator, denominator }: INutrientProgress) => {
         width={null}
         height={4}
         color={indicatorColor}
-        unfilledColor={colors.line}
+        unfilledColor={colors.bgBox}
         borderWidth={0}
       />
       <ProgressBarNumber>{`${numerator}/${denominator}`}</ProgressBarNumber>
